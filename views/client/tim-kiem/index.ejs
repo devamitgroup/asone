@@ -355,7 +355,7 @@ for (let category of categories) {
         (async () => {
             let param = new URLSearchParams(window.location.search);
             let keyword = param.get('keyword');
-            const response = await fetch('http://localhost:3000/san-pham/tim-kiem?keyword=' + keyword);
+            const response = await fetch('/san-pham/tim-kiem?keyword=' + keyword);
             const data = await response.json();
             console.log(data);
             const listproduct = document.getElementById('listproduct');
