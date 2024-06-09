@@ -3,7 +3,14 @@
   <head>
     <title><%= title %></title>
     <meta http-equiv="content-language" content="vi" />
-
+    <meta name="title" content="<%= title %>" />
+    <meta name="keywords" content="đại l&#253; as one" />
+    <meta name="description" content="<%= product.describe %>" />
+    <meta name="og:image" content="<%=BASE_URL + product.images[0] %>" />
+    <meta name="og:title" content="<%= title %>" />
+    <meta name="og:site_name" content="<%= product.describe %> " />
+    <meta name="og:url" content="/san-pham/<%= product.slug %>" />
+    <meta name="og:description" content="<%= product.describe %>" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="<%= faviconPath %>" type="image/x-icon" />
