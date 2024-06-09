@@ -9,7 +9,6 @@ router.get("/", introController.getIntroductionClient, (req, res) => {
   res.render("client/gioi-thieu.ejs", {
     intro: res.locals.intro,
     faviconPath: process.env.FAVICON_PATH,
-    BASE_URL: process.env.BASE_URL,
   });
 });
 
