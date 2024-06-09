@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    
+                                <title>Thiết bị,dụng cụ nh&#224; m&#225;y</title>
+                            
+                            
+
+    <link href="../../Content/Uploads/images/logo.png" rel="shortcut icon" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="../../Content/lib/bootstrap3/grid12.min.css" rel="stylesheet" />
+    
+    
+    
+    <link href="../../Content/lib/owlcarousel2/assets/owl.carousel.min.css" rel="stylesheet" />
+    
+    <link href="../../Content/lib/css/template.min.css" rel="stylesheet" />
+    <link href="../../Content/lib/css/template-responsive.min.css" rel="stylesheet" />
+
+<body>
+    
+    <div class="head">
+        <div class="banner">
+            <div class="w-ct clearfix">
+                <div class="hidden-lg hidden-md hidden-sm col-xs-2 mmenu">
+                    <a rel="nofollow" href="2.html#menu"></a>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-8">
+                        <a href="../../index.html" class="logo">
+                            <img alt="Logo"  src="../../Content/Uploads/images/logo.png" />
+                        </a>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12 pull-right">
+                        <div class="hidden-xs">
+                            <div class="phone-email">
+							
+								<a
+									href="mailto:sales@daiduongautomation.com ">
+									<img src="https://lotusarchvn.com/images/icon3.svg" alt="" width="25px">
+									<span class="hidden-xs">Yêu cầu báo giá</span>
+								</a>
+							</div>
+                            <div class="language">
+                                    <a href="" rel="nofollow" class="pull-right">
+                                        <img alt="Vietnamese" src="../../Content/images/vietnam.png" width="30" height="22" />
+                                    </a>
+                                    <a class="pull-right" rel="nofollow" href="#"> <img width="30" height="22" src="../../Content/images/english.png" /></a>
+                                    <a class="pull-right" rel="nofollow" href="#">
+                                        <img width="30" height="22" src="https://tulieuvankien.dangcongsan.vn/Uploads/2018/7/5/3/Quoc%20ky%20NhatBan.jpg"
+                                    /></a>
+                            </div>
+                        </div>
+
+                	<div class="box-search">
+							<input
+								class="txtkeysearch"
+								id="keysearch"
+								autocomplete="off"
+								name="keyword"
+								maxlength="80"
+								placeholder="Nhập nội dung tìm kiếm..."
+								type="text" />
+							<a class="btnsearch" id="searchhref"  ></a>
+							
+						</div>
+                </div>
+            </div>
+        </div>
+           	<div class="b-m hidden-xs">
+				<div class="w-ct clearfix">
+					<div class="col-md-3 col-sm-3 hidden-xs">
+						<div class="bm-l">
+							<div class="ctitle">Danh mục sản phẩm</div>
+							<div class="m-l" id='menu'>
+							
+								<ul>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<script>
+						(async () => {
+							const menu = document.querySelector('#menu ul');
+							const res = await fetch(`https://data-as-one-default-rtdb.firebaseio.com/categories.json`);
+							const data = await res.json();
+							if (data) {
+								Object.entries(data).forEach(([key, value]) => {
+									if (value.parentCategoryID == null) {
+										// Hiển thị danh mục cha
+										menu.innerHTML += `
+											<li>
+												<a href="/chi-tiet-danh-muc/page/index.html?key=${key}" rel="nofollow">
+													<img src="../../Content/Uploads/images/category_icon01.png" alt="${value.categoryName}" />${value.categoryName}
+												</a>
+												<ul id="submenu-${key}"></ul>
+											</li>
+										`;
+										// Hiển thị danh mục con
+										Object.entries(data).forEach(([subKey, subValue]) => {
+											if (subValue.parentCategoryID === key) {
+												const submenu = document.querySelector(`#submenu-${key}`);
+												submenu.innerHTML += `
+													<li>
+														<a href="/chi-tiet-danh-muc/page/index.html?key=${subKey}" rel="nofollow">${subValue.categoryName}</a>
+													</li>
+												`;
+											}
+										});
+									}
+								});
+							}
+						})();
+					</script>
+					
+					<div class="col-md-9 col-md-9 hidden-xs">
+						<div class="m-t">
+							<ul>
+								<li data-id="1">
+									<a title="Giới thiệu" target="_parent" href="gioi-thieu.html">
+										Giới thiệu
+									</a>
+								</li>
+								<li data-id="69">
+									<a
+										title="Thương hiệu"
+										target="_parent"
+										href="thuong-hieu.html">
+										Thương hiệu <i class="fa fa-chevron-down"></i>
+									</a>
+									<ul>
+										<li data-id="71">
+											<a title="AS ONE" target="_parent" href="as-one.html">
+												AS ONE <i class="fa fa-chevron-right"></i>
+											</a>
+											<ul>
+												<li data-id="73">
+													<a
+														title="Thiết bị ph&#226;n t&#237;ch th&#237; nghiệm AS ONE"
+														target="_parent"
+														href="thiet-bi-thi-nghiem-as-one.html">
+														Thiết bị ph&#226;n t&#237;ch th&#237; nghiệm AS ONE
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li data-id="75">
+											<a title="ASPURE" target="_parent" href="aspure.html">
+												ASPURE <i class="fa fa-chevron-right"></i>
+											</a>
+											<ul>
+												<li data-id="135">
+													<a
+														title="Thiết bị ph&#242;ng sạch Aspure"
+														target="_parent"
+														href="thiet-bi-phong-sach-aspure.html">
+														Thiết bị ph&#242;ng sạch Aspure
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li data-id="77">
+											<a title="CUSTOM" target="_parent" href="custom.html">
+												CUSTOM <i class="fa fa-chevron-right"></i>
+											</a>
+											<ul>
+												<li data-id="101">
+													<a
+														title="M&#225;y đo chất lượng nước Custom"
+														target="_parent"
+														href="may-do-chat-luong-nuoc-custom.html">
+														M&#225;y đo chất lượng nước Custom
+													</a>
+												</li>
+												<li data-id="149">
+													<a
+														title="Nhiệt kế Custom"
+														target="_parent"
+														href="nhiet-ke-custom.html">
+														Nhiệt kế Custom
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li data-id="79">
+											<a title="FURUPLA" target="_parent" href="furupla.html">
+												FURUPLA
+											</a>
+										</li>
+										<li data-id="81">
+											<a
+												title="NIHON FREEZER"
+												target="_parent"
+												href="nihon-freezer.html">
+												NIHON FREEZER
+											</a>
+										</li>
+										<li data-id="83">
+											<a
+												title="RS COMPONENTS"
+												target="_parent"
+												href="rs-components.html">
+												RS COMPONENTS
+											</a>
+										</li>
+										<li data-id="85">
+											<a title="TRUSCO" target="_parent" href="trusco.html">
+												TRUSCO <i class="fa fa-chevron-right"></i>
+											</a>
+											<ul>
+												<li data-id="127">
+													<a
+														title="Dụng cụ Trusco"
+														target="_parent"
+														href="dung-cu-trusco.html">
+														Dụng cụ Trusco
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li data-id="87">
+											<a
+												title="YAMATO SCIENTIFIC"
+												target="_parent"
+												href="yamato-scientific.html">
+												YAMATO SCIENTIFIC <i class="fa fa-chevron-right"></i>
+											</a>
+											<ul>
+												<li data-id="151">
+													<a
+														title="Thiết bị th&#237; nghiệm Yamato Scientific"
+														target="_parent"
+														href="thiet-bi-thi-nghiem-yamato-scientific.html">
+														Thiết bị th&#237; nghiệm Yamato Scientific
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li data-id="3">
+									<a title="Dịch vụ" target="_parent" href="dich-vu.html">
+										Dịch vụ
+									</a>
+								</li>
+								<li data-id="5">
+									<a
+										title="Tin tức"
+										target="_parent"
+										href="tin-tuc/page">
+										Tin tức
+									</a>
+								</li>
+								<li data-id="7">
+									<a title="Li&#234;n hệ" target="_parent" href="lien-he.html">
+										Li&#234;n hệ
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+    </div>
+                   
+
+
+
+<div class="w-ct clearfix lstproduct">
+    <div class="col-md-3 col-sm-3 hidden-xs">
+        
+            <div class="ltitle1">Lọc sản phẩm</div>
+            <div class="attributelist">
+                <p>Thương hiệu</p><ul class='groupattr1'>
+                    
+                </ul>
+            </div>
+            <script>
+            (async () => {
+    const groupattr1 = document.querySelector('.groupattr1');
+    const listproduct = document.querySelector('#listproduct');
+
+    // Lấy giá trị của brands từ URL param
+    const params = new URLSearchParams(window.location.search);
+    const brandsParam = params.get('brands');
+    let brands = [];
+    if (brandsParam) {
+        brands = JSON.parse(brandsParam);
+    }
+
+    // Fetch brands and populate checkboxes
+    const res = await fetch('https://data-as-one-default-rtdb.firebaseio.com/brands.json');
+    const brandsData = await res.json();
+    if (brandsData) {
+        Object.entries(brandsData).forEach(([key, value]) => {
+            const isChecked = brands.includes(value.categoryName); // Kiểm tra xem tên thương hiệu có trong mảng brands không
+            groupattr1.innerHTML += `
+                <li>
+                    <label>
+                        <input class='chkattribute' type='checkbox' value='${value.categoryName}' ${isChecked ? 'checked' : ''} />
+                        ${value.categoryName}
+                        <span></span>
+                    </label>
+                </li>
+            `;
+        });
+    }
+
+    // Sự kiện khi checkbox thương hiệu được thay đổi
+    document.querySelectorAll('.chkattribute').forEach(checkbox => {
+        checkbox.addEventListener('input', () => {
+            const selectedBrands = []; // Mảng để lưu trữ các thương hiệu được chọn
+            document.querySelectorAll('.chkattribute:checked').forEach(checkedCheckbox => {
+                selectedBrands.push(checkedCheckbox.value); // Lưu tên thương hiệu của các checkbox được chọn vào mảng
+            });
+            const newParams = new URLSearchParams(window.location.search); // Tạo một param mới từ URL hiện tại
+            newParams.set('brands', JSON.stringify(selectedBrands)); // Cập nhật param 'brands' với danh sách thương hiệu được chọn
+            window.history.pushState({}, '', decodeURIComponent(`${window.location.pathname}?${newParams.toString()}`)); // Cập nhật URL với param mới
+            location.reload()
+        });
+    });
+})();
+
+
+            </script>
+    </div>
+    <div class="col-md-9 col-sm-9 col-xs-12">
+            <div id="listproduct" class="row">
+            
+                  
+            </div>
+            <!-- <div class="paging clear">
+                <a class='' href='1.html'>1</a><a class='active'>2</a>
+            </div> -->
+       
+        <!-- <div class="showmore"><i class="fa fa-angle-double-right"></i> Xem thêm <i class="fa fa-angle-double-left"></i></div> -->
+    </div>
+</div>
+                         
+<div class="footer-main">
+    <div class="w-ct clearfix">
+        <div class='f-foot'>
+            <div>
+                <h5 class='fl-foot'>Follow us</h5>
+            </div>
+            <div>
+                <img src="./Content/Uploads/images/ico_youtube01.png" width="50px" alt="">
+                <img src="./Content/Uploads/images/ico_facebook01.png" width="50px" alt="">
+            </div>
+        </div>
+        <div class="line-foot">
+            <hr color="#fff"/>
+
+        </div>
+        <div class="list-detail-foot clearfix">
+            <div class="col-md-3">
+                <h1>AS ONE</h1>
+                <p class="vn-foot">VietNam</p>
+            </div>
+            <div class="col-md-3">
+                <p class="title-item-foot">Công ty</p>
+                <ul class="list-item-foot">
+                    <li>Về chúng tôi</li>
+                    <li>Dịch vụ</li>
+                    <li>Global Home</li>
+                    <li>Tuyển dụng</li>
+                    <li>Cam kết bảo vệ quyền riêng</li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <p class="title-item-foot">Sản phẩm</p>
+                <ul class="list-item-foot">
+                    <li>Sản phẩm theo danh mục</li>
+                    <li>Nhà cung cấp</li>
+                    <li>Các mặt hàng nổi bật</li>
+                    <li>Video sản phẩm</li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <p class="title-item-foot">Tin tức</p>
+                <ul class="list-item-foot">
+                    <li>Thông tin công ty</li>
+                    <li>Thông tin sản phẩm</li>
+                    <li>Triển lãm/Hội thảo</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+  
+    <div class="social-ring">
+        <div class="social-ring-main" style="display:block;">
+            <div class="social-ring-content">
+                <a target="_blank" rel="nofollow" href="" class="mes">
+                    <img alt="Fanpage" width="40" height="40" src="../../Content/Uploads/images/mess-i.png">
+                    <div class="animated alo-circle"></div>
+                    <div class="animated alo-circle-fill"></div>
+                    <span>Message Facebook</span>
+                </a>
+                <a target="_blank" rel="nofollow" href="https://zalo.me/0888406268" class="zalo">
+                    <img alt="Zalo" width="40" height="40" src="../../Content/Uploads/images/zalo-i.png">
+                    <div class="animated alo-circle"></div>
+                    <div class="animated alo-circle-fill"></div>
+                    <span>Zalo: 0888.40.62.68</span>
+                </a>
+                <a target="_blank" rel="nofollow" href="tel:0888406268" class="call-icon" rel="nofollow">
+                    <img alt="Hotline" width="40" height="40" src="../../Content/Uploads/images/phone-i.png">
+                    <div class="animated alo-circle"></div>
+                    <div class="animated alo-circle-fill"></div>
+                    <span>Hotline: 0888.40.62.68</span>
+                </a>
+                <a target="_blank" rel="nofollow" href="tel:0968080891" class="call-icon" rel="nofollow">
+                    <img alt="Hotline" width="40" height="40" src="../../Content/Uploads/images/phone-i.png">
+                    <div class="animated alo-circle"></div>
+                    <div class="animated alo-circle-fill"></div>
+                    <span>Hotline: 0888.40.62.68</span>
+                </a>
+            </div>
+        </div>
+     
+        
+    </div>
+    <input type="hidden" id="currentLanguage" value="vi" />
+    <script src="../../Content/lib/js/jquery-1.10.2.min.js"></script>
+    
+    <script src="../../Content/lib/owlcarousel2/owl.carousel.min.js"></script>
+    <script src="../../Content/lib/js/autosearch.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script>
+        (async () => {
+        let param = new URLSearchParams(window.location.search);
+        let keyCate = param.get('key');
+        let brandsParam = param.get('brands');
+
+        let brands = [];
+        if (brandsParam) {
+            brands = JSON.parse(brandsParam);
+        }
+   
+
+        const listproduct = document.querySelector('#listproduct');
+        const res = await fetch(`https://data-as-one-default-rtdb.firebaseio.com/products.json`);
+        const data = await res.json();
+
+        if (data) {
+                Object.entries(data).map(([key, value]) => {
+                    // Kiểm tra xem sản phẩm có trường manufacturer nằm trong danh sách các thương hiệu đã chọn không
+                    if (brands.length === 0 || (value.manufacturer && brands.includes(value.manufacturer))) {
+                            listproduct.innerHTML += `  
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                    <div class="p-i">
+                                        <a class="p-img" href="../../chi-tiet-san-pham.html?key=${key}" title="${value.productName}">
+                                            <img src="${value.images[0]}" class="lazy" title="${value.productName}" alt="${value.productName}" />
+                                        </a>
+                                        <h3><a href="../../chi-tiet-san-pham.html?key=${key}">${value.productName}</a></h3>
+                                        <p class="price-box">
+                                            <span class="price-news">Giá: Liên hệ</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    
+                });
+        }
+        })();
+
+    </script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    		function createSlug(productName) {
+				return productName
+					.toLowerCase()
+					.normalize("NFD")
+					.replace(/[\u0300-\u036f]/g, "")
+					.replace(/[^a-z0-9 -]/g, "")
+					.replace(/\s+/g, "-")
+					.replace(/--+/g, "-")
+					.replace(/^-+/, "")
+					.replace(/-+$/, "");
+			}
+    $(document).ready(function() {
+        let page = 1; // Số trang hiện tại
+        const perPage = 10; // Số sản phẩm muốn hiển thị mỗi lần tải
+        let brands = []; // Mảng chứa các thương hiệu đã chọn
+
+        // Hàm để tải sản phẩm từ server
+        function loadProducts() {
+            $.ajax({
+                url: 'https://data-as-one-default-rtdb.firebaseio.com/products.json',
+                method: 'GET',
+                data: { page: page, perPage: perPage },
+                success: function(response) {
+                    if (response) {
+                        Object.entries(response).map(([key, value]) => {
+                            // Kiểm tra nếu sản phẩm thuộc thương hiệu đã chọn
+                            if (brands.length === 0 || (value.manufacturer && brands.includes(value.manufacturer))) {
+                                // Hiển thị sản phẩm
+                                $('#listproduct').append(`
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <div class="p-i">
+                                            <a class="p-img" href="../../products/?${createSlug(value.productName)}" title="${value.productName}">
+                                                <img src="${value.images[0]}" class="lazy" title="${value.productName}" alt="${value.productName}" />
+                                            </a>
+                                            <h3><a href="../../products/?${createSlug(value.productName)}">${value.productName}</a></h3>
+                                            <p class="price-box">
+                                                <span class="price-news">Giá: Liên hệ</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                `);
+                            }
+                        });
+                        page++; // Tăng số trang
+                    }
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+
+        // Kiểm tra khi người dùng cuộn đến cuối trang
+        $(window).scroll(function() {
+            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                loadProducts(); // Nếu cuộn đến cuối trang, tải thêm sản phẩm
+            }
+        });
+
+        // Tải sản phẩm ban đầu khi trang được tải
+        loadProducts();
+
+        // Hàm để cập nhật danh sách thương hiệu khi URL thay đổi
+        function updateBrands() {
+            let param = new URLSearchParams(window.location.search);
+            let brandsParam = param.get('brands');
+            if (brandsParam) {
+                brands = JSON.parse(brandsParam);
+            }
+        }
+
+        // Gọi hàm cập nhật thương hiệu ban đầu
+        updateBrands();
+
+        // Thực hiện cập nhật thương hiệu mỗi khi URL thay đổi
+        $(window).on('popstate', function() {
+            updateBrands();
+        });
+    });
+</script>
+
+</body>
+</html>

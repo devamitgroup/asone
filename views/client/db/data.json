@@ -1,0 +1,163 @@
+{
+    "categories": [
+      {
+        "idCategory": "1",
+        "categoryName": "Thiết bị dụng cụ nhà máy",
+        "parentCategoryID": null
+      },
+      {
+        "idCategory": "2",
+        "categoryName": "Thiết bị dụng cụ thí nghiệm",
+        "parentCategoryID": null
+      },
+      {
+        "idCategory": "3",
+        "categoryName": "Thiết bị phòng sạch, chống tĩnh điện",
+        "parentCategoryID": null
+      },
+      {
+        "idCategory": "4",
+        "categoryName": "Thiết bị y tế",
+        "parentCategoryID": null
+      },
+      {
+        "idCategory": "5",
+        "categoryName": "Thiết bị kiểm tra và vệ sinh thực phẩm",
+        "parentCategoryID": null
+      },
+      {
+        "idCategory": "6",
+        "categoryName": "Thiết bị sử dụng khẩn cấp",
+        "parentCategoryID": null
+      },
+      {
+        "idCategory": "7",
+        "categoryName": "Thiết bị văn phòng",
+        "parentCategoryID": null
+      },
+      {
+        "idCategory": "8",
+        "categoryName": "Dụng cụ thiết bị nhà máy",
+        "parentCategoryID": "1"
+      },
+      {
+        "idCategory": "9",
+        "categoryName": "Thiết bị trong sản xuất",
+        "parentCategoryID": "1"
+      },
+      {
+        "idCategory": "9",
+        "categoryName": "Thiết bị an toàn",
+        "parentCategoryID": "1"
+      },
+      {
+        "idCategory": "10",
+        "categoryName": "Logistics",
+        "parentCategoryID": "1"
+      },
+      {
+        "idCategory": "11",
+        "categoryName": "Dụng cụ thí nghiệm",
+        "parentCategoryID": "2"
+      },
+      {
+        "idCategory": "12",
+        "categoryName": "Dụng cụ đo lường",
+        "parentCategoryID": "2"
+      },
+      {
+        "idCategory": "13",
+        "categoryName": "Trang thiết bị, nội thất phòng thí nghiệm",
+        "parentCategoryID": "2"
+      },
+      {
+        "idCategory": "14",
+        "categoryName": "Máy phân tích, thiết bị kiểm tra",
+        "parentCategoryID": "2"
+      },
+      {
+        "idCategory": "15",
+        "categoryName": "Vật liệu, bộ phận đường ống",
+        "parentCategoryID": "2"
+      },
+      {
+        "idCategory": "16",
+        "categoryName": "Dụng cụ làm sạch, máy tiệt trùng",
+        "parentCategoryID": "2"
+      },
+      {
+        "idCategory": "17",
+        "categoryName": "Dụng cụ và thiết bị",
+        "parentCategoryID": "2"
+      },
+      {
+        "idCategory": "18",
+        "categoryName": "Đồ cung cấp cho phòng sạch",
+        "parentCategoryID": "3"
+      },
+      {
+        "idCategory": "19",
+        "categoryName": "Dụng cụ làm sạch môi trường",
+        "parentCategoryID": "3"
+      },
+      {
+        "idCategory": "20",
+        "categoryName": "Các thiết bị lắp đặt cho phòng sạch",
+        "parentCategoryID": "3"
+      },
+      {
+        "idCategory": "21",
+        "categoryName": "Dụng cụ dùng trong thực phẩm",
+        "parentCategoryID": "4"
+      },
+      {
+        "idCategory": "22",
+        "categoryName": "Thiết bị kiểm tra trong y tế",
+        "parentCategoryID": "4"
+      },
+      {
+        "idCategory": "23",
+        "categoryName": "Thiết bị và nguyên liệu khử trùng",
+        "parentCategoryID": "4"
+      },
+      {
+        "idCategory": "24",
+        "categoryName": "Đồ dùng cho môn học y tế",
+        "parentCategoryID": "4"
+      }
+    ],
+    "products": [
+      {
+        "idProduct": "111-22309",
+        "productName": "Sơn chống trơn trượt sử dụng trong nhà máy ( Màu Xám )",
+        "manufacturer": "AS ONE",
+        "model": "KS 12",
+        "idCategory": "1",
+        "besselling": true,
+        "images": [
+          "http://127.0.0.1:5501/Content/Uploads/images/thiet-bi-dung-cu-nha-may/gray-01.jpg",
+          "http://127.0.0.1:5501/Content/Uploads/images/thiet-bi-dung-cu-nha-may/gray-2.jpg"
+        ]
+      }
+    ],
+    "new": [
+        {
+            "create": "20-10-2023",
+            "name":"Cách dùng dụng cụ bảo quản hóa chất trong phòng thí nghiệm",
+            "describe":"Bạn đã biết cách dùng dụng cụ bảo quản hóa chất đúng cách? Các lưu ý khi bảo quản hóa chất? Hãy đọc bài viết của Logatech để stìm hiểu chi tiết.",
+            "avt": "http://127.0.0.1:5501/Content/Uploads/images/dung-cu-bao-quan-hoa-chat-(4)-min.jpg",
+            "detail" :""
+        }
+    ],
+    "info": {
+        "describe":""
+    },
+    "services": {
+        "describe":""
+    },
+    "admin":{
+      "username":"admin",
+      "password":"asone2024"
+    }
+  }
+  

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title><%= title %></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <link rel="icon" type="image/x-icon" href="<%= faviconPath %>" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link
+      href="/views/admin/lib/owlcarousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/views/admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/views/admin/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="/views/admin/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+      <!-- Spinner Start -->
+      <div
+        id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="spinner-border text-primary"
+          style="width: 3rem; height: 3rem"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div class="sidebar pe-4 pb-3">
+        <nav class="navbar bg-light navbar-light">
+          <a href="/admin/home" class="navbar-brand mx-4 mb-3">
+            <img src="/public/static/logo.png" width="200px" alt="" />
+          </a>
+
+          <div class="navbar-nav w-100">
+            <a href="/san-pham/admin" class="nav-item nav-link"
+              ><i class="fa fa-tachometer-alt me-2"></i>Sản phẩm</a
+            >
+            <a href="/gioi-thieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-th me-2"></i>Trang giới thiệu</a
+            >
+
+            <a href="/tin-tuc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Bài viết</a
+            >
+
+            <a href="/account/admin/tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-user me-2"></i>Tài khoản</a
+            >
+
+            <a href="/danh-muc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh mục</a
+            >
+            <a href="/hang-san-xuat/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Hãng sản xuất</a
+            >
+            <a href="/account/list-tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh sách tài khoản</a
+            >
+            <a href="/nha-cung-cap/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Nhà cung cấp</a
+            >
+            <a href="/khach-hang/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Khách hàng</a
+            >
+            <a href="/lien-he/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Liên hệ</a
+            >
+            <a href="/thuong-hieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Thương hiệu</a
+            >
+          </div>
+        </nav>
+      </div>
+      <div class="content">
+        <form
+          action="/thuong-hieu/update/<%= brand._id %>"
+          enctype="multipart/form-data"
+          id="updateBrand"
+        >
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              value="<%= brand.name %>"
+            />
+            <label for="floatingInput">Tên thương hiệu</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="slug"
+              name="slug"
+              value="<%= brand.slug %>"
+            />
+            <label for="floatingInput">Đường dẫn SEO</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="describe"
+              name="describe"
+              value="<%= brand.describe %>"
+            />
+            <label for="floatingInput">Mô tả</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="file" id="avt" name="avt" accept="image/*" />
+            <img
+              id="previewImage"
+              src="<%= BASE_URL + brand.avt %>"
+              alt="Preview"
+              style="max-width: 200px; max-height: 200px"
+            />
+          </div>
+          <div class="">
+            <textarea id="editor" name="detail"><%= brand.detail %></textarea>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-success">Lưu thương hiệu</button>
+          </div>
+        </form>
+      </div>
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+        ><i class="bi bi-arrow-up"></i
+      ></a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/views/admin/lib/chart/chart.min.js"></script>
+    <script src="/views/admin/lib/easing/easing.min.js"></script>
+    <script src="/views/admin/lib/waypoints/waypoints.min.js"></script>
+    <script src="/views/admin/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/views/admin/js/main.js"></script>
+    <script src="/views/admin/ckeditor/ckeditor.js"></script>
+    <script>
+      CKEDITOR.replace("editor", {});
+    </script>
+    <script>
+      function removeDiacritics(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      }
+
+      // Hàm chuyển đổi chuỗi thành slug
+      function convertToSlug(str) {
+        return removeDiacritics(str).toLowerCase().trim().replace(/\s+/g, "-");
+      }
+
+      // Lắng nghe sự kiện khi người dùng nhập vào ô "Tên Danh Mục"
+      document.getElementById("name").addEventListener("input", function () {
+        var nameProduct = this.value;
+
+        var slug = convertToSlug(nameProduct);
+
+        document.getElementById("slug").value = slug;
+      });
+    </script>
+    <script>
+      document
+        .getElementById("avt")
+        .addEventListener("change", function (event) {
+          var file = event.target.files[0]; // Lấy file được chọn bởi người dùng
+
+          if (file) {
+            var reader = new FileReader(); // Tạo một FileReader để đọc file
+
+            // Định nghĩa hàm được gọi khi file đã được đọc thành công
+            reader.onload = function (e) {
+              // Thiết lập src của img để hiển thị ảnh xem trước
+              var previewImage = document.getElementById("previewImage");
+              previewImage.src = e.target.result;
+            };
+
+            // Đọc file dưới dạng URL dữ liệu
+            reader.readAsDataURL(file);
+          }
+        });
+    </script>
+
+    <script>
+      document
+        .getElementById("updateBrand")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Ngăn chặn hành vi submit mặc định của form
+
+          CKEDITOR.instances.editor.updateElement(); // Cập nhật dữ liệu từ CKEditor vào textarea
+
+          const formData = new FormData(this); // Tạo FormData với dữ liệu form
+
+          const actionUrl = this.action; // Lấy URL từ thuộc tính action của form
+          console.log(actionUrl);
+          // Sử dụng fetch để gửi yêu cầu PUT
+          fetch(actionUrl, {
+            method: "PUT", // Thay đổi phương thức thành PUT
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                alert("Cập nhật thương hiệu thành công!");
+                window.location.href = "//thuong-hieu/admin"; // Điều hướng người dùng sau khi cập nhật thành công
+              } else {
+                throw new Error(data.message);
+              }
+            })
+            .catch((error) => {
+              console.error("Lỗi:", error);
+              alert("Đã có lỗi xảy ra khi cập nhật bài viết.");
+            });
+        });
+    </script>
+  </body>
+</html>

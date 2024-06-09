@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Thêm danh mục</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="<%= process.env.FAVICON_PATH %>"
+    />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link
+      href="/views/admin/lib/owlcarousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/views/admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/views/admin/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="/views/admin/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+      <!-- Spinner Start -->
+      <div
+        id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="spinner-border text-primary"
+          style="width: 3rem; height: 3rem"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <!-- Spinner End -->
+      <div class="sidebar pe-4 pb-3">
+        <nav class="navbar bg-light navbar-light">
+          <a href="/admin/home" class="navbar-brand mx-4 mb-3">
+            <img src="/public/static/logo.png" width="200px" alt="" />
+          </a>
+
+          <div class="navbar-nav w-100">
+            <a href="/san-pham/admin" class="nav-item nav-link"
+              ><i class="fa fa-tachometer-alt me-2"></i>Sản phẩm</a
+            >
+            <a href="/gioi-thieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-th me-2"></i>Trang giới thiệu</a
+            >
+
+            <a href="/tin-tuc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Bài viết</a
+            >
+
+            <a href="/account/admin/tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-user me-2"></i>Tài khoản</a
+            >
+
+            <a href="/danh-muc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh mục</a
+            >
+            <a href="/hang-san-xuat/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Hãng sản xuất</a
+            >
+            <a href="/account/list-tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh sách tài khoản</a
+            >
+            <a href="/nha-cung-cap/admins" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Nhà cung cấp</a
+            >
+            <a href="/khach-hang/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Khách hàng</a
+            >
+            <a href="/lien-he/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Liên hệ</a
+            >
+            <a href="//thuong-hieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Thương hiệu</a
+            >
+          </div>
+        </nav>
+      </div>
+      <div class="content">
+        <div class="container-fluid pt-4 px-4">
+          <div class="row g-4">
+            <div class="col-12">
+              <div class="bg-light rounded h-100 p-4">
+                <div class="d-flex justify-content-between py-4">
+                  <h6 class="mb-4">Danh mục</h6>
+                  <div>
+                    <button
+                      class="btn btn-success"
+                      data-bs-toggle="modal"
+                      data-bs-target="#addCategoryModal"
+                    >
+                      Thêm danh mục
+                    </button>
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tên danh mục</th>
+                        <th scope="col">Hình ảnh</th>
+                        <th scope="col">Đường dẫn SEO</th>
+                        <th scope="col">Hành động</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table">
+                      <% categories.forEach(category => { %>
+                      <tr>
+                        <td><%= category.name %></td>
+                        <td>
+                          <img
+                            src="<%=process.env.BASE_URL + category.avt %>"
+                            alt="<%= category.name %>"
+                            style="max-width: 100px"
+                          />
+                        </td>
+                        <td><%= category.slug %></td>
+                        <td>
+                          <button
+                            class="btn btn-dark"
+                            data-parent-id="<%= category._id %>"
+                          >
+                            Xem danh mục con
+                          </button>
+
+                          <button
+                            class="btn btn-info"
+                            data-category-id="<%= category._id %>"
+                          >
+                            Sửa
+                          </button>
+                          <button
+                            class="btn btn-danger delete-btn"
+                            data-category-id="<%= category._id %>"
+                          >
+                            Xóa
+                          </button>
+                        </td>
+                      </tr>
+                      <% }) %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="pagination">
+              <% if (currentPage > 1) { %>
+              <a href="/danh-muc/admin?page=<%= currentPage - 1 %>" class="prev"
+                >Prev</a
+              >
+              <% } %> <% if (totalPages > 1) { %> <% for (let i = 1; i <=
+              totalPages; i++) { %> <% if (i === currentPage || i ===
+              currentPage - 1 || i === currentPage + 1 || i === currentPage - 2
+              || i === currentPage + 2) { %>
+              <a
+                href="/danh-muc/admin?page=<%= i %>"
+                class="<%= i === currentPage ? 'current' : '' %>"
+                ><%= i %></a
+              >
+              <% } else if (i === 1 || i === totalPages) { %>
+              <span>...</span>
+              <% } %> <% } %> <% } %> <% if (currentPage < totalPages) { %>
+              <a href="/danh-muc/admin?page=<%= currentPage + 1 %>" class="next"
+                >Next</a
+              >
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+        ><i class="bi bi-arrow-up"></i
+      ></a>
+    </div>
+
+    <div
+      class="modal fade"
+      id="addCategoryModal"
+      tabindex="-1"
+      aria-labelledby="addCategoryModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addCategoryModalLabel">
+              Thêm Danh Mục
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="addCategoryForm" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="name" class="form-label">Tên Danh Mục</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  required
+                />
+                <label for="slug" class="form-label">Đường dẫn SEO</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="slug"
+                  name="slug"
+                  required
+                />
+                <label for="describe" class="form-label">Mô tả SEO</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="describe"
+                  name="describe"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="avt" class="form-label">Hình Ảnh Danh Mục</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="avt"
+                  name="avt"
+                  accept="image/*"
+                />
+
+                <img
+                  id="imagePreview"
+                  src="#"
+                  alt="Preview"
+                  style="max-width: 100px; max-height: 100px; display: none"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Lưu</button>
+
+              <p class="text-red" id="err"></p>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Đóng
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="editCategoryModal"
+      tabindex="-1"
+      aria-labelledby="editCategoryModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editCategoryModalLabel">
+              Sửa Danh Mục
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="editCategoryForm" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="nameEdit" class="form-label">Tên Danh Mục</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nameEdit"
+                  name="name"
+                  required
+                />
+                <label for="slugEdit" class="form-label">Đường dẫn SEO</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="slugEdit"
+                  name="slug"
+                  required
+                />
+                <label for="describeEdit" class="form-label">Mô tả SEO</label>
+                <textarea
+                  type="text"
+                  class="form-control"
+                  id="describeEdit"
+                  name="describe"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="avt" class="form-label">Hình Ảnh Danh Mục</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="avtEdit"
+                  name="avt"
+                  accept="image/*"
+                />
+                <img
+                  id="imagePreviewEdit"
+                  src="#"
+                  alt="Preview"
+                  style="max-width: 100px; max-height: 100px; display: none"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Lưu</button>
+              <p class="text-red" id="err"></p>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Đóng
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/views/admin/lib/chart/chart.min.js"></script>
+    <script src="/views/admin/lib/easing/easing.min.js"></script>
+    <script src="/views/admin/lib/waypoints/waypoints.min.js"></script>
+    <script src="/views/admin/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script>
+      var categoriesJson = "<%- escape(JSON.stringify(categories)) %>";
+      var categories = JSON.parse(unescape(categoriesJson));
+      var BASE_URL = "<%- process.env.BASE_URL %>";
+      document.querySelectorAll(".btn-info").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const categoryId = this.dataset.categoryId;
+          const form = document.getElementById("editCategoryForm");
+          form.action = `/danh-muc/edit/${categoryId}`;
+          const category = categories.find(
+            (category) => category._id === categoryId
+          );
+          console.log(category);
+          if (category) {
+            document.getElementById("nameEdit").value = category.name;
+            document.getElementById("slugEdit").value = category.slug;
+            document.getElementById("describeEdit").value = category.describe;
+            if (category.avt) {
+              document.getElementById(
+                "imagePreviewEdit"
+              ).src = `${BASE_URL}${category.avt}`;
+              document.getElementById("imagePreviewEdit").style.display =
+                "block";
+            } else {
+              // If the category does not have an image, hide the image preview
+              document.getElementById("imagePreviewEdit").style.display =
+                "none";
+            }
+            $("#editCategoryModal").modal("show");
+          }
+        });
+      });
+      document
+        .getElementById("editCategoryForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Ngăn chặn hành vi submit mặc định của form
+          var formData = new FormData(this); // Tạo đối tượng FormData từ form
+
+          fetch(this.action, {
+            // Gửi yêu cầu fetch tới URL được định nghĩa trong 'action' của form
+            method: "PUT", // Sử dụng phương thức POST (gửi như PUT với trường ẩn _method)
+            body: formData,
+          })
+            .then((response) => {
+              return response.json().then((data) => {
+                if (response.ok) {
+                  // Kiểm tra nếu phản hồi thành công
+                  return data; // Trả lại dữ liệu JSON nếu thành công
+                } else {
+                  // Nếu server trả về một lỗi
+                  throw new Error(data.message || "An error occurred"); // Ném một lỗi với thông điệp từ server hoặc thông điệp mặc định
+                }
+              });
+            })
+            .then((data) => {
+              console.log("Update success:", data);
+              window.location.reload(); // Cập nhật trang để thể hiện sự thay đổi
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById("err").textContent = error.message; // Hiển thị thông báo lỗi
+            });
+        });
+    </script>
+    <script>
+      document.querySelectorAll(".delete-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+          const categoryId = this.getAttribute("data-category-id");
+          console.log(categoryId);
+          if (confirm("Bạn có chắc chắn muốn xóa danh mục này không?")) {
+            fetch(`/danh-muc/${categoryId}`, {
+              method: "DELETE",
+            })
+              .then((response) => {
+                if (response.ok) {
+                  return response.json();
+                } else {
+                  throw new Error("Something went wrong");
+                }
+              })
+              .then((data) => {
+                alert(data.message); // Hiển thị thông báo thành công từ server
+                window.location.reload(); // Tải lại trang để cập nhật danh sách
+              })
+              .catch((error) => {
+                alert(error.message); // Hiển thị lỗi nếu có
+              });
+          }
+        });
+      });
+    </script>
+    <script>
+      document
+        .getElementById("avtEdit")
+        .addEventListener("change", function () {
+          // Lấy đối tượng file từ input
+          var file = this.files[0];
+
+          if (file) {
+            // Tạo một FileReader để đọc file
+            var reader = new FileReader();
+
+            // Đặt hàm xử lý khi file được load xong
+            reader.onload = function (e) {
+              // Cập nhật thuộc tính src cho ảnh xem trước
+              var imgPreview = document.getElementById("imagePreviewEdit");
+              imgPreview.src = e.target.result;
+              imgPreview.style.display = "block"; // Hiển thị ảnh nếu trước đó bị ẩn
+            };
+
+            // Đọc file như một URL dữ liệu
+            reader.readAsDataURL(file);
+          }
+        });
+    </script>
+
+    <script>
+      function removeDiacritics(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      }
+
+      // Hàm chuyển đổi chuỗi thành slug
+      function convertToSlug(str) {
+        return removeDiacritics(str).toLowerCase().trim().replace(/\s+/g, "-");
+      }
+
+      // Lắng nghe sự kiện khi người dùng nhập vào ô "Tên Danh Mục"
+      document.getElementById("name").addEventListener("input", function () {
+        // Lấy giá trị của ô "Tên Danh Mục"
+        var categoryName = this.value;
+
+        // Tạo slug từ giá trị của ô "Tên Danh Mục"
+        var slug = convertToSlug(categoryName);
+
+        // Cập nhật giá trị của ô "Đường dẫn SEO" với giá trị slug mới
+        document.getElementById("slug").value = slug;
+      });
+      document
+        .getElementById("nameEdit")
+        .addEventListener("input", function () {
+          // Lấy giá trị của ô "Tên Danh Mục"
+          var categoryName = this.value;
+
+          // Tạo slug từ giá trị của ô "Tên Danh Mục"
+          var slug = convertToSlug(categoryName);
+
+          // Cập nhật giá trị của ô "Đường dẫn SEO" với giá trị slug mới
+          document.getElementById("slugEdit").value = slug;
+        });
+    </script>
+    <script>
+      // Lắng nghe sự kiện khi người dùng chọn hình ảnh trong input file
+      document.getElementById("avt").addEventListener("change", function () {
+        // Lấy đối tượng hình ảnh đã chọn
+        var file = this.files[0];
+
+        // Kiểm tra xem có hình ảnh được chọn không
+        if (file) {
+          // Tạo một đối tượng FileReader
+          var reader = new FileReader();
+
+          // Định nghĩa hàm xử lý khi hình ảnh được load thành công
+          reader.onload = function (event) {
+            // Cập nhật thuộc tính src của thẻ <img> với đường dẫn của hình ảnh đã chọn
+            document.getElementById("imagePreview").src = event.target.result;
+            // Hiển thị thẻ <img>
+            document.getElementById("imagePreview").style.display = "block";
+          };
+
+          // Đọc hình ảnh như một URL dữ liệu
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+    <script>
+      document
+        .getElementById("addCategoryForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault(); // Ngăn chặn chuyển hướng mặc định của form
+
+          // Gửi request AJAX để submit form
+          const formData = new FormData(this); // FormData chứa dữ liệu của form
+          try {
+            const response = await fetch("/danh-muc/add", {
+              method: "POST",
+              body: formData,
+            });
+
+            if (response.status === 200) {
+              const data = await response.json();
+              // Hiển thị thông báo thành công
+              alert(data.message);
+
+              window.location.reload();
+            } else {
+              const errorData = await response.json();
+              throw new Error(errorData.message || "Request failed");
+            }
+          } catch (error) {
+            alert(
+              error.message || "An error occurred. Please try again later."
+            );
+          }
+        });
+    </script>
+    <script>
+      document.querySelectorAll(".btn-dark").forEach((btn) => {
+        btn.addEventListener("click", async function () {
+          const parentId = this.dataset.parentId; // Thêm data attribute data-parent-id vào nút Xem danh mục con
+          try {
+            const response = await fetch(`/danh-muc-con/parent/${parentId}`);
+            if (response.ok) {
+              window.location.href = `/danh-muc-con/parent/${parentId}`;
+            } else {
+              console.error("Failed to load subcategories");
+            }
+          } catch (error) {
+            console.error("An error occurred:", error);
+          }
+        });
+      });
+    </script>
+
+    <script src="/views/admin/js/main.js"></script>
+  </body>
+</html>

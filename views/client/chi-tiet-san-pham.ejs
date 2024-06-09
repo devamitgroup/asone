@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <title><%= title %></title>
+    <meta http-equiv="content-language" content="vi" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="<%= faviconPath %>" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="/views/client/Content/lib/bootstrap3/grid12.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="/views/client/Content/lib/owlcarousel2/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="/views/client/Content/lib/css/template.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/views/client/Content/lib/css/template-responsive.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: #fff; /* Màu nền với độ mờ */
+        z-index: 1000; /* Đảm bảo hiển thị trên tất cả các phần tử khác */
+        display: none; /* Ẩn ban đầu */
+      }
+
+      .loader {
+        border: 16px solid #f3f3f3; /* Màu nền cho biểu tượng loading */
+        border-top: 16px solid #3498db; /* Màu cho phần đỉnh của biểu tượng loading */
+        border-radius: 50%; /* Để biểu tượng tròn */
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite; /* Tạo hiệu ứng quay xoay */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -60px; /* Chỉnh sửa để căn giữa theo chiều dọc */
+        margin-left: -60px; /* Chỉnh sửa để căn giữa theo chiều ngang */
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="overlay" class="overlay">
+      <div class="loader"></div>
+    </div>
+
+    <div class="head">
+      <div class="banner">
+        <div class="w-ct clearfix">
+          <div class="hidden-lg hidden-md hidden-sm col-xs-2 mmenu">
+            <a rel="nofollow" href="#menu"></a>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-8">
+            <a href="/" class="logo">
+              <img
+                alt="Logo"
+                src="/views/client/Content/Uploads/images/logo.png"
+              />
+            </a>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-12 pull-right">
+            <div class="hidden-xs">
+              <div class="phone-email">
+                <a href="mailto:sales@daiduongautomation.com ">
+                  <img
+                    src="https://lotusarchvn.com/images/icon3.svg"
+                    alt=""
+                    width="25px"
+                  />
+                  <span class="hidden-xs">Yêu cầu báo giá</span>
+                </a>
+              </div>
+              <div class="language">
+                <a href="/" rel="nofollow" class="pull-right">
+                  <img
+                    alt="Vietnamese"
+                    src="/views/client/Content/images/vietnam.png"
+                    width="30"
+                    height="22"
+                  />
+                </a>
+                <a class="pull-right" rel="nofollow" href="#">
+                  <img
+                    width="30"
+                    height="22"
+                    src="/views/client/Content/images/english.png"
+                /></a>
+                <a class="pull-right" rel="nofollow" href="#">
+                  <img
+                    width="30"
+                    height="22"
+                    src="https://tulieuvankien.dangcongsan.vn/Uploads/2018/7/5/3/Quoc%20ky%20NhatBan.jpg"
+                /></a>
+              </div>
+            </div>
+
+            <div class="box-search">
+              <input
+                class="txtkeysearch"
+                id="keysearch"
+                autocomplete="off"
+                name="keyword"
+                maxlength="80"
+                placeholder="Nhập nội dung tìm kiếm..."
+                type="text"
+              />
+              <a class="btnsearch" id="searchhref"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="b-m hidden-xs">
+        <div class="w-ct clearfix">
+          <div class="col-md-3 col-sm-3 hidden-xs">
+            <div class="bm-l">
+              <div class="ctitle">Danh mục sản phẩm</div>
+              <div class="m-l" id="menu">
+                <ul></ul>
+              </div>
+            </div>
+          </div>
+          <script>
+            (async () => {
+              const menu = document.querySelector("#menu ul");
+              const res = await fetch(`/danh-muc/all`);
+              const categories = await res.json();
+              console.log(categories);
+              if (categories) {
+                for (let category of categories) {
+                  const listItem = document.createElement("li");
+                  listItem.innerHTML = `
+        <a href="/danh-muc/${category.slug}">
+          <img src="/views/client/Content/Uploads/images/category_icon01.png" alt="${category.name}" />${category.name}
+        </a>
+        <ul id="submenu-${category._id}"></ul>
+      `;
+                  menu.appendChild(listItem);
+
+                  const submenu = document.querySelector(
+                    `#submenu-${category._id}`
+                  );
+                  fetch(`/danh-muc-con/get/${category._id}`)
+                    .then((response) => response.json())
+                    .then((subcategories) => {
+                      if (subcategories.length > 0) {
+                        subcategories.forEach((subcategory) => {
+                          const subItem = document.createElement("li");
+                          subItem.innerHTML = `<a href="/danh-muc-con/${subcategory.slug}">${subcategory.name}</a>`;
+                          submenu.appendChild(subItem);
+                        });
+                      }
+                    })
+                    .catch((error) => {
+                      console.error("Error loading subcategories:", error);
+                    });
+                }
+              }
+            })();
+          </script>
+
+          <div class="col-md-9 col-md-9 hidden-xs">
+            <div class="m-t">
+              <ul>
+                <li data-id="1">
+                  <a title="Giới thiệu" target="_parent" href="/gioi-thieu">
+                    Giới thiệu
+                  </a>
+                </li>
+                <li data-id="69">
+                  <a title="Thương hiệu" target="_parent" href="/thuong-hieu">
+                    Thương hiệu <i class="fa fa-chevron-down"></i>
+                  </a>
+                  <ul id="brands-post"></ul>
+                </li>
+                <li data-id="3">
+                  <a
+                    title="Sản phẩm"
+                    target="_parent"
+                    href="/san-pham/tat-ca-san-pham"
+                  >
+                    Sản phẩm
+                  </a>
+                </li>
+                <li data-id="5">
+                  <a title="Tin tức" target="_parent" href="/tin-tuc">
+                    Tin tức
+                  </a>
+                </li>
+                <li data-id="7">
+                  <a title="Li&#234;n hệ" target="_parent" href="/lien-he">
+                    Li&#234;n hệ
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <script>
+            (async () => {
+              const brandsPost = document.querySelector("#brands-post");
+              const res = await fetch(`/thuong-hieu/all`);
+              const data = await res.json();
+              console.log(data);
+              if (data) {
+                data.map((value, key) => {
+                  brandsPost.innerHTML += `
+
+									<li data-id="71">
+											<a title="${value.name}" target="_parent" href="/thuong-hieu/${value.slug}">
+												${value.name} <i class="fa fa-chevron-right"></i>
+											</a>
+										</li>
+									`;
+                });
+              }
+            })();
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="navi"></div>
+
+    <div class="w-ct padding15 clearfix">
+      <div class="row">
+        <div class="col-sm-5">
+          <section class="imgDetailProduct" id="imgDetailProduct">
+            <div class="gallery">
+              <div class="item">
+                <img
+                  src="<%= BASE_URL + product.images[0] %>"
+                  alt="<%= product.name %>"
+                />
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="col-sm-7" id="detail-info">
+          <h1 class="h1title"><%= product.name %></h1>
+
+          <div class="info-detail">
+            <table>
+              <tbody>
+                <tr>
+                  <td>Hãng Sản xuất</td>
+                  <td>
+                    <a
+                      href="/san-pham/tat-ca-san-pham?manufacturerId=<%= product.manufacturer._id %>"
+                      class="text-primary"
+                      ><%= product.manufacturer.name %></a
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>Model</td>
+                  <td><%= product.model %></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="id_prpduct">
+              <p>Mã sản phẩm</p>
+              <p><%= product.idProduct %></p>
+            </div>
+          </div>
+          <div class="clearfix">
+            <a class="dhotline" href="tel:0888406268">
+              <i class="fa fa-phone"></i> 0888406268
+            </a>
+            <a class="demail" href="mailto:sales@daiduongautomation.com">
+              <i class="fa fa-envelope"></i> sales@daiduongautomation.com
+            </a>
+          </div>
+
+          <div class="note-product">
+            <div class="box-note">
+              <h5>
+                *Vui lòng click vào <span>"Số điện thoại"</span> hoặc
+                <span>"Gmail"</span> để được nhận báo giá
+              </h5>
+              <br />
+              <h5>
+                *Bạn không tìm thấy sản phẩm bạn cần, vui lòng gửi hình
+                ảnh/thông số kĩ thuật/Model/ mã sản phẩm và số lượng bạn cần đến
+                email: sales@daiduongautomation.com. Chúng tôi sẽ tìm nó cho bạn
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="htitle2">
+        <span>Thông tin sản phẩm</span>
+      </div>
+      <div class="product-detail fixmobile detail" id="desribe"></div>
+      <div class="lst-cm"></div>
+      <form
+        action="https://logatech.com.vn/Comment/_SendComment"
+        data-ajax="true"
+        data-ajax-begin="OnBegin_Comment"
+        data-ajax-failure="OnFailure_Comment"
+        data-ajax-success="OnSuccess_Comment"
+        id="form0"
+        method="post"
+      >
+        <div id="f-rate">
+          <p>Vui lòng cho chúng tôi biết đánh giá của bạn!</p>
+
+          <input type="hidden" name="PostId" value="21" />
+          <input
+            type="hidden"
+            name="PostName"
+            value="Sơn chống trơn trượt sử dụng trong nhà máy ( Màu Xám )"
+          />
+          <input type="hidden" name="PostType" value="1" />
+          <input type="hidden" name="Rate" id="rate" value="5" />
+          <div class="divinput row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input
+                data-val="true"
+                data-val-length="Bạn chỉ được nhập tối đa 300 ký tự !"
+                data-val-length-max="300"
+                data-val-required="Yêu cầu nhập tiêu đề !"
+                id="Title"
+                name="Title"
+                placeholder="Họ tên *"
+                type="text"
+                value=""
+              />
+              <span
+                class="field-validation-valid"
+                data-valmsg-for="Title"
+                data-valmsg-replace="true"
+              ></span>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input
+                data-val="true"
+                data-val-length="Bạn chỉ được nhập tối đa 200 ký tự !"
+                data-val-length-max="200"
+                data-val-regex="Email không đúng định dạng!"
+                data-val-regex-pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+                id="Email"
+                name="Email"
+                placeholder="Email"
+                type="text"
+                value=""
+              />
+              <span
+                class="field-validation-valid"
+                data-valmsg-for="Title"
+                data-valmsg-replace="true"
+              ></span>
+            </div>
+          </div>
+          <div class="divinput">
+            <textarea
+              cols="20"
+              id="Detail"
+              name="Detail"
+              placeholder="Nội dung"
+              rows="2"
+            ></textarea>
+            <span
+              class="field-validation-valid"
+              data-valmsg-for="Detail"
+              data-valmsg-replace="true"
+            ></span>
+          </div>
+          <div class="rating-stars">
+            <ul id="stars">
+              <li class="star selected" title="Kém" data-value="1">
+                <i class="fa fa-star fa-fw"></i>
+              </li>
+              <li class="star selected" title="Bình thường" data-value="2">
+                <i class="fa fa-star fa-fw"></i>
+              </li>
+              <li class="star selected" title="Tốt" data-value="3">
+                <i class="fa fa-star fa-fw"></i>
+              </li>
+              <li class="star selected" title="Rất tốt" data-value="4">
+                <i class="fa fa-star fa-fw"></i>
+              </li>
+              <li class="star selected" title="Tuyệt vời" data-value="5">
+                <i class="fa fa-star fa-fw"></i>
+              </li>
+            </ul>
+          </div>
+          <input
+            name="__RequestVerificationToken"
+            type="hidden"
+            value="0mQPCBPGLLAJCic768vrSgGDvxhjNSl91YGipjgTLYc2_EYm_vPe50YJijDg2J1JOzT4tIbM9-6azzwqLs4QVome64LtsC2pD3KFLfNkoCg1"
+          />
+          <div class="divinput">
+            <button type="submit" class="sendrate">Gửi đánh giá</button>
+          </div>
+          <div id="rcomment"></div>
+        </div>
+      </form>
+      <style>
+        #f-rate {
+          margin-top: 30px;
+          box-shadow: 0 0 6px #ccc;
+          border-radius: 10px;
+          padding: 20px 15px;
+          background: #fff;
+        }
+
+        #f-rate textarea {
+          height: 80px;
+        }
+
+        #f-rate h4 {
+          font-size: 14px;
+          line-height: 30px;
+          font-weight: bold;
+          color: #ee3349;
+        }
+        .sendrate {
+          font-weight: 700;
+          font-size: 18px;
+          margin-top: 10px;
+          color: #fff;
+          background: #ee3349;
+          border-radius: 5px;
+          line-height: 40px;
+          padding: 0 20px;
+          border: none;
+        }
+        .rating-stars ul {
+          list-style-type: none;
+          padding: 0;
+          -moz-user-select: none;
+          -webkit-user-select: none;
+        }
+
+        .rating-stars ul > li.star {
+          display: inline-block;
+        }
+
+        /* Idle State of the stars */
+        .rating-stars ul > li.star > i.fa {
+          font-size: 2.5em; /* Change the size of the stars */
+          color: #ccc; /* Color on idle state */
+        }
+
+        /* Hover state of the stars */
+        .rating-stars ul > li.star.hover > i.fa {
+          color: #ffcc36;
+        }
+
+        /* Selected state of the stars */
+        .rating-stars ul > li.star.selected > i.fa {
+          color: #ff912c;
+        }
+      </style>
+
+      <p class="htitle1"><span>Sản phẩm khác</span></p>
+      <div class="row" id="listproduct"></div>
+    </div>
+
+    <div class="footer">
+      <div class="w-ct clearfix">
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <p>AXEL VIỆT NAM</p>
+
+          <ul>
+            <li>
+              <a href="gioi-thieu.html" rel="Nofollow" target="_blank"
+                >Giới thiệu</a
+              >
+            </li>
+            <li>
+              <a href="tin-tuc/page" rel="dofollow" target="_blank">Tin tức</a>
+            </li>
+            <li>
+              <a href="lien-he.html" rel="Nofollow" target="_blank"
+                >Li&ecirc;n hệ</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <p>SẢN PHẨM</p>
+
+          <ul>
+            <li>
+              <a
+                href="thiet-bi-dung-cu-nha-may/page/3.html"
+                rel="dofollow"
+                target="_blank"
+                >Thiết bị, dụng cụ nh&agrave; m&aacute;y</a
+              >
+            </li>
+            <li>
+              <a
+                href="thiet-bi-dung-cu-thi-nghiem/page/3.html"
+                rel="dofollow"
+                target="_blank"
+                >Thiết bị, dụng cụ th&iacute; nghiệm</a
+              >
+            </li>
+            <li>
+              <a
+                href="thiet-bi-phong-sach-chong-tinh-di#"
+                rel="dofollow"
+                target="_blank"
+                >Thiết bị ph&ograve;ng sạch/ chống tĩnh điện</a
+              >
+            </li>
+            <li>
+              <a href="thiet-bi-y-te.html" rel="dofollow" target="_blank"
+                >Thiết bị y tế</a
+              >
+            </li>
+            <li>
+              <a
+                href="thiet-bi-kiem-tra-va-ve-sinh-thuc-pham.html"
+                rel="nofollow"
+                target="_blank"
+                >Thiết bị kiểm tra v&agrave; vệ sinh thực phẩm</a
+              >
+            </li>
+            <li>
+              <a
+                href="thiet-bi-su-dung-khan-cap.html"
+                rel="nofollow"
+                target="_blank"
+                >Thiết bị sử dụng khẩn cấp</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <p>TH&Ocirc;NG TIN CH&Iacute;NH S&Aacute;CH</p>
+
+          <ul>
+            <li>
+              <a href="chinh-sach-bao-mat.html" rel="Nofollow" target="_blank"
+                >Ch&iacute;nh s&aacute;ch bảo mật</a
+              >
+            </li>
+            <li>
+              <a href="chinh-sach-bao-hanh.html" rel="Nofollow" target="_blank"
+                >Ch&iacute;nh s&aacute;ch bảo h&agrave;nh</a
+              >
+            </li>
+            <li>
+              <a
+                href="son-chong-tron-truot-su-dung-trong-nha-may-mau-xam.html#"
+                rel="Nofollow"
+                >Ch&iacute;nh s&aacute;ch đổi trả h&agrave;ng h&oacute;a</a
+              >
+            </li>
+            <li>
+              <a
+                href="son-chong-tron-truot-su-dung-trong-nha-may-mau-xam.html#"
+                rel="Nofollow"
+                >Ch&iacute;nh s&aacute;ch vận chuyển v&agrave; giao nhận</a
+              >
+            </li>
+            <li>
+              <a
+                href="son-chong-tron-truot-su-dung-trong-nha-may-mau-xam.html#"
+                rel="Nofollow"
+                >Hướng dẫn mua h&agrave;ng</a
+              >
+            </li>
+            <li>
+              <a
+                href="son-chong-tron-truot-su-dung-trong-nha-may-mau-xam.html#"
+                rel="Nofollow"
+                >Hướng dẫn thanh to&aacute;n</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 copl-sm-6 col-xs-12">
+          <div class="social">
+            <a href="" rel="nofollow" target="_blank"
+              ><img
+                alt=""
+                src="Content/Uploads/images/iface.png"
+                style="height: 36px; width: 36px" /></a
+            >&nbsp;<a
+              href="https://twitter.com/logatechvietnam"
+              rel="nofollow"
+              target="_blank"
+              ><img
+                alt=""
+                src="Content/Uploads/images/itwitter.png"
+                style="height: 36px; width: 36px" /></a
+            >&nbsp;<a
+              href="https://www.youtube.com/channel/UCXNqUq5hnzrCwMg6id6-3UQ"
+              rel="nofollow"
+              target="_blank"
+              ><img
+                alt=""
+                src="Content/Uploads/images/iyoutube.png"
+                style="height: 36px; width: 36px" /></a
+            >&nbsp;<a
+              href="https://www.linkedin.com/in/logatechvietnam/"
+              rel="nofollow"
+              target="_blank"
+              ><img
+                alt=""
+                src="Content/Uploads/images/ilinkedin.png"
+                style="height: 36px; width: 36px" /></a
+            ><a
+              href="https://www.instagram.com/logatechvn/"
+              rel="nofollow"
+              target="_blank"
+              ><img
+                alt=""
+                src="Content/Uploads/images/iinstagram.png"
+                style="height: 36px; width: 36px"
+            /></a>
+          </div>
+
+          <p>
+            Địa chỉ:&nbsp;<a
+              href="https://maps.app.goo.gl/U7bj7FpaCV5JrGmq9"
+              rel="nofollow"
+              target="_blank"
+              ><span style="color: #ffffff"
+                >Số 1211 đường Phạm Văn Bạch, Phường 12, Quận Gò Vấp, Thành phố
+                Hồ Chí Minh, Việt Nam</span
+              ></a
+            >
+          </p>
+
+          <p>Email: sales@daiduongautomation.com</p>
+
+          <p>Điện thoại: 0888406268 -&nbsp;0968080891</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="w-ct clearfix">
+        <div class="f-foot">
+          <div>
+            <h5 class="fl-foot">Follow us</h5>
+          </div>
+          <div>
+            <img
+              src="./Content/Uploads/images/ico_youtube01.png"
+              width="50px"
+              alt=""
+            />
+            <img
+              src="./Content/Uploads/images/ico_facebook01.png"
+              width="50px"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="line-foot">
+          <hr color="#fff" />
+        </div>
+        <div class="list-detail-foot clearfix">
+          <div class="col-md-3">
+            <h1>AS ONE</h1>
+            <p class="vn-foot">VietNam</p>
+          </div>
+          <div class="col-md-3">
+            <p class="title-item-foot">Công ty</p>
+            <ul class="list-item-foot">
+              <li>Về chúng tôi</li>
+              <li>Dịch vụ</li>
+              <li>Global Home</li>
+              <li>Tuyển dụng</li>
+              <li>Cam kết bảo vệ quyền riêng</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <p class="title-item-foot">Sản phẩm</p>
+            <ul class="list-item-foot">
+              <li>Sản phẩm theo danh mục</li>
+              <li>Nhà cung cấp</li>
+              <li>Các mặt hàng nổi bật</li>
+              <li>Video sản phẩm</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <p class="title-item-foot">Tin tức</p>
+            <ul class="list-item-foot">
+              <li>Thông tin công ty</li>
+              <li>Thông tin sản phẩm</li>
+              <li>Triển lãm/Hội thảo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="social-ring">
+      <div class="social-ring-main" style="display: block">
+        <div class="social-ring-content">
+          <a target="_blank" rel="nofollow" href="" class="mes">
+            <img
+              alt="Fanpage"
+              width="40"
+              height="40"
+              src="/views/client/Content/Uploads/images/mess-i.png"
+            />
+            <div class="animated alo-circle"></div>
+            <div class="animated alo-circle-fill"></div>
+            <span>Message Facebook</span>
+          </a>
+          <a
+            target="_blank"
+            rel="nofollow"
+            href="https://zalo.me/0888406268"
+            class="zalo"
+          >
+            <img
+              alt="Zalo"
+              width="40"
+              height="40"
+              src="/views/client/Content/Uploads/images/zalo-i.png"
+            />
+            <div class="animated alo-circle"></div>
+            <div class="animated alo-circle-fill"></div>
+            <span>Zalo: 0888.40.62.68</span>
+          </a>
+          <a
+            target="_blank"
+            rel="nofollow"
+            href="tel:0888406268"
+            class="call-icon"
+            rel="nofollow"
+          >
+            <img
+              alt="Hotline"
+              width="40"
+              height="40"
+              src="/views/client/Content/Uploads/images/phone-i.png"
+            />
+            <div class="animated alo-circle"></div>
+            <div class="animated alo-circle-fill"></div>
+            <span>Hotline: 0888.40.62.68</span>
+          </a>
+          <a
+            target="_blank"
+            rel="nofollow"
+            href="tel:0968080891"
+            class="call-icon"
+            rel="nofollow"
+          >
+            <img
+              alt="Hotline"
+              width="40"
+              height="40"
+              src="/views/client/Content/Uploads/images/phone-i.png"
+            />
+            <div class="animated alo-circle"></div>
+            <div class="animated alo-circle-fill"></div>
+            <span>Hotline: 0888.40.62.68</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" id="currentLanguage" value="vi" />
+    <script src="/views/client/Content/lib/js/jquery-1.10.2.min.js"></script>
+    <script src="/views/client/Content/lib/owlcarousel2/owl.carousel.min.js"></script>
+
+    <script src="/views/client/Content/lib/js/autosearch.js"></script>
+    <script type="text/javascript">
+      var arrUrl = window.location.href.split("https://logatech.com.vn");
+      if (arrUrl.length > 1) {
+        var url = arrUrl[1];
+        if (url.indexOf("//") > -1) {
+          url = url.replaceAll("//////////", "/");
+          url = url.replaceAll("/////////", "/");
+          url = url.replaceAll("////////", "/");
+          url = url.replaceAll("//////", "/");
+          url = url.replaceAll("/////", "/");
+          url = url.replaceAll("////", "/");
+          url = url.replaceAll("///", "/");
+          url = url.replaceAll("//", "/");
+          window.location.href = arrUrl[0] + url;
+        }
+      }
+      $(document).ready(function () {
+        var heightBody = $("body").outerHeight();
+        var heightWindow = $(window).outerHeight() + 400;
+        if (heightBody > heightWindow) {
+          $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+              $(".head").addClass("fixed");
+            } else $(".head").removeClass("fixed");
+          });
+        }
+        $(".user-support").click(function () {
+          $(".social-ring-main").toggle();
+        });
+        $(".pclose").click(function () {
+          $("#fade").hide();
+          $("#popup").hide();
+          //$('#hc-popup').animate({ "top": "-50%" }, "slow");
+        });
+        $("a.btn-support").click(function (e) {
+          e.stopPropagation();
+          $(".support-content").slideToggle();
+        });
+        $(".support-content").click(function (e) {
+          e.stopPropagation();
+        });
+        $(document).click(function () {
+          $(".support-content").slideUp();
+        });
+        $(".cate_" + $("#currentId").val()).addClass("active");
+        $(".cate_" + $("#currentId").val())
+          .parent()
+          .parent()
+          .addClass("active");
+        $(".cate_" + $("#currentId").val())
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .addClass("active");
+      });
+    </script>
+
+    <link
+      href="/views/client/Content/lib/lightbox/dist/css/lightbox.min.css"
+      rel="stylesheet"
+    />
+    <script src="/views/client/Content/lib/lightbox/dist/js/lightbox.min.js"></script>
+    <script src="/views/client/Content/lib/toc/jquery.toc.min.js"></script>
+    <script src="/views/client/Content/lib/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="/views/client/Content/lib/js/jquery.validate.min.js"></script>
+    <script src="/views/client/Content/lib/js/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+      var productJSON = "<%- escape(JSON.stringify(product)) %>";
+      var product = JSON.parse(unescape(productJSON));
+      var BASE_URL = "<%= BASE_URL %>";
+
+      document.querySelector("#desribe").innerHTML = product.detailProduct;
+
+      (async () => {
+        const res = await fetch(
+          `/san-pham/get-product-recoment/${product.category._id}?slug=${product.slug}`
+        );
+        const data = await res.json();
+        const morelist = document.querySelector("#listproduct");
+        console.log(data);
+        if (data) {
+          data.map((value, key) => {
+            morelist.innerHTML += `
+               <div class="col-md-3 col-sm-3 col-xs-6">
+				<div class="p-i">
+          
+						
+						<img
+							src="${BASE_URL + value.images[0]}"
+							class="lazy"
+							title="${value.name}"
+							alt="${value.name}" />
+				
+					<p class="ph3">
+						<a href="/san-pham/${value.slug}"
+							>${value.name}</a
+						>
+					</p>
+					<p class="price-box">
+						<span class="price-news">Gi&#225;: Li&#234;n hệ</span>
+					</p>
+				</div>
+			</div>
+            `;
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

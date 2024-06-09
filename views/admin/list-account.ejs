@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title><%= title %></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link
+      href="/views/admin/lib/owlcarousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/views/admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/views/admin/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="/views/admin/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+      <!-- Spinner Start -->
+      <div
+        id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="spinner-border text-primary"
+          style="width: 3rem; height: 3rem"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div class="sidebar pe-4 pb-3">
+        <nav class="navbar bg-light navbar-light">
+          <a href="/admin/home" class="navbar-brand mx-4 mb-3">
+            <img src="/public/static/logo.png" width="200px" alt="" />
+          </a>
+
+          <div class="navbar-nav w-100">
+            <a href="/san-pham/admin" class="nav-item nav-link"
+              ><i class="fa fa-tachometer-alt me-2"></i>Sản phẩm</a
+            >
+            <a href="/gioi-thieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-th me-2"></i>Trang giới thiệu</a
+            >
+
+            <a href="/tin-tuc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Bài viết</a
+            >
+
+            <a href="/account/admin/tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-user me-2"></i>Tài khoản</a
+            >
+
+            <a href="/danh-muc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh mục</a
+            >
+            <a href="/hang-san-xuat/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Hãng sản xuất</a
+            >
+            <a href="/account/list-tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh sách tài khoản</a
+            >
+            <a href="/nha-cung-cap/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Nhà cung cấp</a
+            >
+            <a href="/khach-hang/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Khách hàng</a
+            >
+            <a href="/lien-he/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Liên hệ</a
+            >
+            <a href="/thuong-hieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Thương hiệu</a
+            >
+          </div>
+        </nav>
+      </div>
+      <div class="content py-3">
+        <a href="/account/them-tai-khoan" class="btn btn-dark"
+          >Thêm tài khoản</a
+        >
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Tên đăng nhập</th>
+                <th scope="col">Email</th>
+                <th scope="col">Quyền</th>
+                <th scope="col">Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="table"></tbody>
+          </table>
+        </div>
+      </div>
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+        ><i class="bi bi-arrow-up"></i
+      ></a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/views/admin/lib/chart/chart.min.js"></script>
+    <script src="/views/admin/lib/easing/easing.min.js"></script>
+    <script src="/views/admin/lib/waypoints/waypoints.min.js"></script>
+    <script src="/views/admin/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/views/admin/js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/account/all")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((accounts) => {
+            const tableBody = document.getElementById("table");
+            let rows = "";
+            accounts.forEach((account) => {
+              rows += `<tr>
+                              <td>${account.username}</td>
+                              <td>${account.email}</td>
+                              <td>${account.role}</td>
+                              <td>
+                               
+                                  <button onclick="deleteAccount('${account._id}')" class="btn btn-danger">Delete</button>
+                              </td>
+                           </tr>`;
+            });
+            tableBody.innerHTML = rows;
+          })
+          .catch((error) => {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+            alert("Lỗi khi tải dữ liệu");
+          });
+      });
+      async function deleteAccount(accountId) {
+        // Xác nhận từ người dùng trước khi thực hiện xóa
+        const confirmDelete = confirm(
+          "Bạn có chắc chắn muốn xóa tài khoản này?"
+        );
+        if (!confirmDelete) return;
+
+        try {
+          // Gửi yêu cầu xóa đến server
+          const response = await fetch(`/account/delete/${accountId}`, {
+            method: "DELETE",
+          });
+
+          // Kiểm tra kết quả trả về từ server
+          if (response.ok) {
+            // Nếu xóa thành công, tải lại trang để cập nhật dữ liệu
+            location.reload();
+          } else {
+            // Xử lý lỗi nếu có
+            const errorMessage = await response.json();
+            throw new Error(errorMessage.message || "Xóa tài khoản thất bại.");
+          }
+        } catch (error) {
+          console.error("Lỗi khi xóa tài khoản:", error);
+          alert("Đã xảy ra lỗi. Vui lòng thử lại.");
+        }
+      }
+    </script>
+  </body>
+</html>

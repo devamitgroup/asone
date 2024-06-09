@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="vi">
+	<head>
+		<title><%= title %></title>
+		<meta name="title" content="AXEL VIỆT NAM" />
+		<meta name="keywords" content="AXEL VIỆT NAM" />
+		<meta
+			name="description"
+			content="AXEL VIỆT NAM chuyên cung cấp các thiết bị thí nghiệm, thiết bị phòng sạch, dụng cụ nhà máy, dụng cụ y tế... có chất lượng cao đến từ các thương hiệu lớn." />
+
+		<meta name="og:title" content="AXEL VIỆT NAM" />
+		<meta name="og:site_name" content="AXEL VIỆT NAM" />
+
+		<meta
+			name="og:description"
+			content="Liên hệ" />
+		<link rel="canonical" href="index.html" />
+		<meta name="robots" content="index, follow" />
+		<meta name="googlebot" content="index,follow" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="<%=  faviconPath %>" type="image/x-icon">
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+			rel="stylesheet" />
+		<link href="/views/client/Content/lib/bootstrap3/grid12.min.css" rel="stylesheet" />
+
+		<link
+			href="/views/client/Content/lib/owlcarousel2/assets/owl.carousel.min.css"
+			rel="stylesheet" />
+
+		<link href="/views/client/Content/lib/css/template.min.css" rel="stylesheet" />
+		<link href="/views/client/Content/lib/css/template-responsive.min.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="head">
+			<div class="banner">
+				<div class="w-ct clearfix">
+					<div class="hidden-lg hidden-md hidden-sm col-xs-2 mmenu">
+						<a rel="nofollow" href="#menu"></a>
+					</div>
+					<div class="col-md-3 col-sm-3 col-xs-8">
+						<a href="/" class="logo">
+							<img alt="Logo" src="/views/client/Content/Uploads/images/logo.png" />
+						</a>
+					</div>
+					<div class="col-md-3 col-sm-6 col-xs-12 pull-right">
+						<div class="hidden-xs">
+							<div class="phone-email">
+							
+								<a
+									href="mailto:sales@daiduongautomation.com ">
+									<img src="https://lotusarchvn.com/images/icon3.svg" alt="" width="25px">
+									<span class="hidden-xs">Yêu cầu báo giá</span>
+								</a>
+							</div>
+							<div class="language">
+								<a href="/" rel="nofollow" class="pull-right">
+									<img
+										alt="Vietnamese"
+										src="/views/client/Content/images/vietnam.png"
+										width="30"
+										height="22" />
+								</a>
+								<a class="pull-right" rel="nofollow" href="#">
+									<img width="30" height="22" src="/views/client/Content/images/english.png"
+								/></a>
+								<a class="pull-right" rel="nofollow" href="#">
+									<img width="30" height="22" src="https://tulieuvankien.dangcongsan.vn/Uploads/2018/7/5/3/Quoc%20ky%20NhatBan.jpg"
+								/></a>
+							</div>
+						</div>
+
+						<div class="box-search">
+							<input
+								class="txtkeysearch"
+								id="keysearch"
+								autocomplete="off"
+								name="keyword"
+								maxlength="80"
+								placeholder="Nhập nội dung tìm kiếm..."
+								type="text" />
+							<a class="btnsearch" id="searchhref" 	></a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="b-m hidden-xs">
+				<div class="w-ct clearfix">
+					<div class="col-md-3 col-sm-3 hidden-xs">
+						<div class="bm-l">
+							<div class="ctitle">Danh mục sản phẩm</div>
+							<div class="m-l" id='menu'>
+							
+								<ul>
+									
+								</ul>
+							</div>
+						</div>
+					</div>
+					<script>
+						(async () => {
+  const menu = document.querySelector("#menu ul");
+  const res = await fetch(`/danh-muc/all`);
+  const categories = await res.json();
+  console.log(categories);
+  if (categories) {
+    for (let category of categories) {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `
+        <a href="/danh-muc/${category.slug}">
+          <img src="/views/client/Content/Uploads/images/category_icon01.png" alt="${category.name}" />${category.name}
+        </a>
+        <ul id="submenu-${category._id}"></ul>
+      `;
+      menu.appendChild(listItem);
+
+      const submenu = document.querySelector(`#submenu-${category._id}`);
+      fetch(`/danh-muc-con/get/${category._id}`)
+        .then(response => response.json())
+        .then(subcategories => {
+          if (subcategories.length > 0) {
+            subcategories.forEach(subcategory => {
+              const subItem = document.createElement('li');
+              subItem.innerHTML = `<a href="/danh-muc-con/${subcategory.slug}">${subcategory.name}</a>`;
+              submenu.appendChild(subItem);
+            });
+          }
+        })
+        .catch(error => {
+          console.error('Error loading subcategories:', error);
+          
+        });
+    }
+  }
+})();
+
+
+			
+					</script>
+					
+					<div class="col-md-9 col-md-9 hidden-xs">
+						<div class="m-t">
+							<ul>
+								<li data-id="1">
+									<a title="Giới thiệu" target="_parent" href="/gioi-thieu">
+										Giới thiệu
+									</a>
+								</li>
+								<li data-id="69">
+									<a
+										title="Thương hiệu"
+										target="_parent"
+										href="/thuong-hieu">
+										Thương hiệu <i class="fa fa-chevron-down"></i>
+									</a>
+									<ul id='brands-post'>
+									
+								
+									</ul>
+								</li>
+								<li data-id="3">
+									<a title="Sản phẩm" target="_parent" href="/san-pham/tat-ca-san-pham">
+										Sản phẩm
+									</a>
+								</li>
+								<li data-id="5">
+									<a
+										title="Tin tức"
+										target="_parent"
+										href="/tin-tuc">
+										Tin tức
+									</a>
+								</li>
+								<li data-id="7">
+									<a title="Li&#234;n hệ" target="_parent" href="/lien-he">
+										Li&#234;n hệ
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<script>
+						(async () =>{
+							const brandsPost = document.querySelector("#brands-post")
+							const res = await fetch(`/thuong-hieu/all`)
+							const data = await res.json()
+							console.log(data);
+							if(data){
+								data.map((value , key) =>{
+									brandsPost.innerHTML += `
+
+									<li data-id="71">
+											<a title="${value.name}" target="_parent" href="/thuong-hieu/${value.slug}">
+												${value.name} <i class="fa fa-chevron-right"></i>
+											</a>
+										</li>
+									`
+								})
+							}
+						})()
+					</script>
+				</div>
+			</div>
+		</div>
+
+		<style>
+			.b-m .m-l {
+				display: none;
+			}
+
+			.head.fixed .m-l {
+				display: none;
+			}
+		</style>
+		<div class="bslider">
+			<div class="clearfix">
+				<div class="col-12 banner-video">
+					<video
+						src="/views/client/Content/Uploads/files/movie.mp4"
+						loop=""
+						playsinline=""
+						muted=""
+						autoplay=""
+						class="m-mv__ph"
+						width="100%"
+						
+						id="mv"></video>
+				</div>
+			</div>
+		</div>
+		<div class="whyus">
+			<div class="w-ct clearfix padding15">
+			
+				<div class="htitle1"><span>Lý do</span></div>
+				<h2>Lý do bạn nên chọn AS ONE</h2>
+				<br />
+				<p>
+					AS ONE là một công ty thương mại tổng hợp tạo ra giá trị ban đầu với
+					các sản phẩm tiên tiến, mạng lưới CNTT và hậu cần cho các lĩnh vực
+					nghiên cứu, công nghiệp và y tế.
+				</p>
+				<p>
+					Các lĩnh vực hoạt động của chúng tôi rất đa dạng: dụng cụ khoa học,
+					dụng cụ công nghiệp và dụng cụ điều dưỡng.Chúng tôi cũng tham gia vào các lĩnh vực chuyên môn cao như thiết bị
+					nghiên cứu và kiểm tra vi khuẩn thực phẩm
+				</p>
+				
+				<div class="w-ct clearfix main-icon">
+					<div class="col-md-4 icon-home">
+						<div>
+							<img
+								src="/views/client/Content/Uploads/images/icon_brands.webp"
+								alt=""
+								height="50px" />
+						</div>
+						<div><p> 3,930 Nhãn Hiệu </p></div>
+					</div>
+					<div class="col-md-4 icon-home">
+						<div>
+							<img
+								src="/views/client/Content/Uploads/images/icon_van.webp"
+								alt=""
+								height="50px" />
+						</div>
+						<div>
+							<p> Các mặt hàng luôn có sẵn để giao hàng nhanh chóng </pơ>
+						</div>
+					</div>
+					<div class="col-md-4 icon-home"><div>
+						<img
+							src="/views/client//Content/Uploads/images/icon_moq.webp"
+							alt=""
+							height="50px" />
+					</div>
+					<div>
+						<p> Không có số lượng đặt hàng tối thiếu</pơ>
+					</div></div>
+				</div>
+			</div>
+		</div>
+		<div class="brand">
+			<div class="w-ct clearfix padding15">
+				<div class="brands-home">
+					<h5>Nhà cung cấp</h5>
+					<hr>
+					<p>Đối tác xuất sắc</p>
+				</div>
+				<div id="kh" class="owl-carousel">
+					
+					
+				</div>
+
+				
+			</div>
+			<div class="btn-see-more">
+				<a href="/thuong-hieu">Xem thêm</a>
+			</div>
+		</div>
+
+
+
+		<div class="brand">
+			<div class="w-ct clearfix padding15" id='dm-noibat'>
+				<div class="htitle1"><span>Danh mục nổi bật</span></div>
+
+				
+				
+			</div>
+			
+		</div>
+
+	
+		<div class="w-ct clearfix ">
+			<h2 class="htitle1">
+				<a rel="nofollow" href="thiet-bi-dung-cu-nha-may/page/3.html"
+					>Sản phẩm bán chạy</a
+				>
+			</h2>
+			
+			<div class="clearfix w-ct padding15">
+				
+				<div class="" id="besselling">
+					
+					
+						
+				</div>
+
+
+			</div>
+		</div>
+
+		
+
+		<div class="brand">
+			<div class="w-ct clearfix padding15">
+				<div class="brands-home">
+					<h5>Khách hàng của chúng tôi</h5>
+					<hr>
+					
+				</div>
+				<div id="khh" class="owl-carousel">
+					
+				</div>
+				
+				
+			</div>
+		
+		</div>
+		<div class="w-ct clearfix">
+			<div class="htitle1 mlr15"><span>Tin tức - Sự kiện</span></div>
+			<div id="hnew" class="owl-carousel">
+				
+			</div>
+		</div>
+		<div class="footer-main">
+			<div class="w-ct clearfix">
+				<div class='f-foot'>
+					<div>
+						<h5 class='fl-foot'>Follow us</h5>
+					</div>
+					<div>
+						<img src="/views/client/Content/Uploads/images/ico_youtube01.png" width="50px" alt="">
+						<img src="/views/client/Content/Uploads/images/ico_facebook01.png" width="50px" alt="">
+					</div>
+				</div>
+				<div class="line-foot">
+					<hr color="#fff"/>
+
+				</div>
+				<div class="list-detail-foot clearfix">
+					<div class="col-md-3">
+						<h1>AS ONE</h1>
+						<p class="vn-foot">VietNam</p>
+					</div>
+					<div class="col-md-3">
+						<p class="title-item-foot">Công ty</p>
+						<ul class="list-item-foot">
+							<li>Về chúng tôi</li>
+							<li>Dịch vụ</li>
+							<li>Global Home</li>
+							<li>Tuyển dụng</li>
+							<li>Cam kết bảo vệ quyền riêng</li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<p class="title-item-foot">Sản phẩm</p>
+						<ul class="list-item-foot">
+							<li>Sản phẩm theo danh mục</li>
+							<li>Nhà cung cấp</li>
+							<li>Các mặt hàng nổi bật</li>
+							<li>Video sản phẩm</li>
+							
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<p class="title-item-foot">Tin tức</p>
+						<ul class="list-item-foot">
+							<li>Thông tin công ty</li>
+							<li>Thông tin sản phẩm</li>
+							<li>Triển lãm/Hội thảo</li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<div class="social-ring">
+			<div class="social-ring-main" style="display: block">
+				<div class="social-ring-content">
+					<a target="_blank" rel="nofollow" href="" class="mes">
+						<img
+							alt="Fanpage"
+							width="40"
+							height="40"
+							src="/views/client/Content/Uploads/images/mess-i.png" />
+						<div class="animated alo-circle"></div>
+						<div class="animated alo-circle-fill"></div>
+						<span>Message Facebook</span>
+					</a>
+					<a
+						target="_blank"
+						rel="nofollow"
+						href="https://zalo.me/0888406268"
+						class="zalo">
+						<img
+							alt="Zalo"
+							width="40"
+							height="40"
+							src="/views/client/Content/Uploads/images/zalo-i.png" />
+						<div class="animated alo-circle"></div>
+						<div class="animated alo-circle-fill"></div>
+						<span>Zalo: 0888.40.62.68</span>
+					</a>
+					<a
+						target="_blank"
+						rel="nofollow"
+						href="tel:0888406268"
+						class="call-icon"
+						rel="nofollow">
+						<img
+							alt="Hotline"
+							width="40"
+							height="40"
+							src="/views/client/Content/Uploads/images/phone-i.png" />
+						<div class="animated alo-circle"></div>
+						<div class="animated alo-circle-fill"></div>
+						<span>Hotline: 0888.40.62.68</span>
+					</a>
+					<a
+						target="_blank"
+						rel="nofollow"
+						href="tel:0968080891"
+						class="call-icon"
+						rel="nofollow">
+						<img
+							alt="Hotline"
+							width="40"
+							height="40"
+							src="/views/client/Content/Uploads/images/phone-i.png" />
+						<div class="animated alo-circle"></div>
+						<div class="animated alo-circle-fill"></div>
+						<span>Hotline: 0888.40.62.68</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="currentLanguage" value="vi" />
+		<script src="/views/client/Content/lib/js/jquery-1.10.2.min.js"></script>
+
+		<script src="/views/client/Content/lib/owlcarousel2/owl.carousel.min.js"></script>
+		<script src="/views/client/Content/lib/js/autosearch.js"></script>
+		<script type="text/javascript">
+		
+			$(document).ready(function () {
+				var heightBody = $("body").outerHeight();
+				var heightWindow = $(window).outerHeight() + 400;
+				if (heightBody > heightWindow) {
+					$(window).scroll(function () {
+						if ($(this).scrollTop() > 100) {
+							$(".head").addClass("fixed");
+						} else $(".head").removeClass("fixed");
+					});
+				}
+				$(".user-support").click(function () {
+					$(".social-ring-main").toggle();
+				});
+				$(".pclose").click(function () {
+					$("#fade").hide();
+					$("#popup").hide();
+					//$('#hc-popup').animate({ "top": "-50%" }, "slow");
+				});
+				$("a.btn-support").click(function (e) {
+					e.stopPropagation();
+					$(".support-content").slideToggle();
+				});
+				$(".support-content").click(function (e) {
+					e.stopPropagation();
+				});
+				$(document).click(function () {
+					$(".support-content").slideUp();
+				});
+				$(".cate_" + $("#currentId").val()).addClass("active");
+				$(".cate_" + $("#currentId").val())
+					.parent()
+					.parent()
+					.addClass("active");
+				$(".cate_" + $("#currentId").val())
+					.parent()
+					.parent()
+					.parent()
+					.parent()
+					.addClass("active");
+			});
+		</script>
+		<script>
+			(async ()=> {
+				const kh = document.querySelector('#kh')
+				const res = await fetch(`/nha-cung-cap/all`)
+				const data = await res.json()
+				console.log(data);
+				if(data){
+					data.suppliers.map((value , key) => {
+						kh.innerHTML += `
+						<div class="item">
+						<a href='/nha-cung-cap/${value.slug}' class="brand-i" 
+							><img
+								width="165"
+								height="90"
+								src="${value.avt}"
+								alt="${value.name}"
+						/></a>
+					</div>
+						`
+					})
+				}
+				$("#kh").owlCarousel({
+					loop: false,
+					dots: false,
+					autoplay: true,
+					autoplayTimeout: 3000,
+					nav: false,
+					navText: [
+						"<i class='fa fa-chevron-left'></i>",
+						"<i class='fa fa-chevron-right'></i>",
+					],
+					responsive: {
+						0: {
+							items: 1,
+						},
+						320: {
+							//xs
+							items: 1,
+						},
+						480: {
+							//xs
+							items: 1,
+						},
+						767: {
+							//sm
+							items: 2,
+						},
+						992: {
+							//sm
+							items: 3,
+						},
+						1000: {
+							items: 6,
+						},
+						1200: {
+							items: 6,
+						},
+					},
+				});
+			})()
+
+		</script>
+
+<script>
+	(async ()=> {
+		const kh = document.querySelector('#khh')
+		const res = await fetch(`/khach-hang`)
+		const data = await res.json()
+		if(data){
+			data.clients.map((value , key) => {
+				kh.innerHTML += `
+				<div class="item">
+				<a class="brand-i" 
+					><img
+						width="165"
+						height="90"
+						src="${value.avt}"
+						alt="${value.name}"
+				/></a>
+			</div>
+				`
+			})
+		}
+		$("#khh").owlCarousel({
+					loop: false,
+					dots: false,
+					autoplay: true,
+					autoplayTimeout: 3000,
+					nav: false,
+					navText: [
+						"<i class='fa fa-chevron-left'></i>",
+						"<i class='fa fa-chevron-right'></i>",
+					],
+					responsive: {
+						0: {
+							items: 1,
+						},
+						320: {
+							//xs
+							items: 1,
+						},
+						480: {
+							//xs
+							items: 1,
+						},
+						767: {
+							//sm
+							items: 2,
+						},
+						992: {
+							//sm
+							items: 3,
+						},
+						1000: {
+							items: 6,
+						},
+						1200: {
+							items: 6,
+						},
+					},
+				});
+	
+	})()
+
+</script>
+<script>
+	function convertToYYYYMMDD(dateString) {
+  const date = new Date(dateString);
+
+  // Lấy năm, tháng, ngày từ đối tượng Date
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;  // getMonth trả về 0-11, cộng 1 để có tháng từ 1-12
+  const day = date.getDate();
+
+  // Đảm bảo thêm số 0 phía trước nếu tháng hoặc ngày chỉ có một chữ số
+  const formattedMonth = month < 10 ? `0${month}` : month;
+  const formattedDay = day < 10 ? `0${day}` : day;
+
+  // Trả về chuỗi định dạng yyyy/mm/dd
+  return `${year}/${formattedMonth}/${formattedDay}`;
+}
+
+	(async()=>{
+		const hnew = document.querySelector('#hnew')
+		const res = await fetch(`/tin-tuc/get-tin-tuc`)
+		const data = await res.json()
+		if(data){
+			data.map((value , key) =>{
+				hnew.innerHTML += `
+				<div class="item">
+			<div class="hn-i">
+				<div class="hn-img">
+					<span>${convertToYYYYMMDD(value.createdAt)}</span>
+					<a
+						href="/tin-tuc/${value.slug}">
+						<img
+							alt="${value.name}"
+							width="240"
+							height="200"
+							src="${value.avt}" />
+					</a>
+				</div>
+				<div class="hn-inf">
+					<h3>
+						<a
+							href="/tin-tuc/${value.slug}">
+							${value.name}
+						</a>
+					</h3>
+					<p>
+						${value.describe}
+					</p>
+					<div>
+						<a href="/tin-tuc/${value.slug}"
+							>Xem th&#234;m <i class="fa fa-arrow-right"></i
+						></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+				`
+			})
+		}
+		$("#hnew").owlCarousel({
+					loop: false,
+					dots: false,
+					autoplay: true,
+					autoplayTimeout: 3000,
+					nav: false,
+					navText: [
+						"<i class='fa fa-chevron-left'></i>",
+						"<i class='fa fa-chevron-right'></i>",
+					],
+					responsive: {
+						0: {
+							items: 1,
+						},
+						320: {
+							//xs
+							items: 1,
+						},
+						480: {
+							//xs
+							items: 1,
+						},
+						767: {
+							//sm
+							items: 2,
+						},
+						992: {
+							//sm
+							items: 3,
+						},
+						1000: {
+							items: 6,
+						},
+						1200: {
+							items: 6,
+						},
+					},
+				});
+	})()
+</script>
+
+		<script type="text/javascript">
+		
+			$(document).ready(function () {
+				$("#slider").owlCarousel({
+					nav: true,
+					lazyload: true,
+					autoplay: true, //	tự chạy
+					loop: true, //tua lại khi chạy hết
+					items: 1,
+					navText: [
+						"<i class='fa fa-angle-left'></i>",
+						"<i class='fa fa-angle-right'></i>",
+					],
+				});
+			
+				
+				
+				$("#featured").owlCarousel({
+					loop: true,
+					dots: false,
+					autoplay: true,
+					autoplayTimeout: 3000,
+					nav: true,
+					navText: [
+						"<i class='fa fa-chevron-left'></i>",
+						"<i class='fa fa-chevron-right'></i>",
+					],
+					responsive: {
+						0: {
+							items: 2,
+						},
+						320: {
+							//xs
+							items: 2,
+						},
+						480: {
+							//xs
+							items: 2,
+						},
+						767: {
+							//sm
+							items: 3,
+						},
+						992: {
+							//sm
+							items: 4,
+						},
+						1000: {
+							items: 4,
+						},
+						1200: {
+							items: 5,
+						},
+					},
+				});
+			});
+		</script>
+
+		<script>
+			
+			(async()=>{
+				const besselling = document.querySelector('#besselling')
+				const res = await fetch('/san-pham/bestsell')
+				const data = await res.json()
+				console.log(data);
+				data.map((value , key) =>{
+					
+						besselling.innerHTML += `<div class="col-md-2  col-xs-6">
+						<div class="p-i">
+							<a
+								class="p-img"
+								href="/san-pham/${value.slug}"
+							>
+								<img
+									src="${value.images[0]}"
+									class="lazy"
+									width="162"
+									height="90"
+									alt-${value.name}
+									 />
+							</a>
+							<h3>
+								<a
+									href="/san-pham/${value.slug}"
+									>${value.name}</a
+								>
+							</h3>
+							<p class="price-box">
+								<span class="price-news">Gi&#225;: Li&#234;n hệ</span>
+							</p>
+						</div>
+					</div>`
+					
+				})
+			})()
+		</script>
+
+	<script>
+		(async () =>{
+			const dmNoibat = document.querySelector("#dm-noibat")
+			const res = await fetch(`/danh-muc/all`)
+			const data = await res.json();
+			console.log(data);
+			if(data){
+				data.map((value , key) =>{
+				
+						dmNoibat.innerHTML += `
+					<div class="col-md-3  col-xs-6">
+					<div class="hcate-i">
+						<h2>
+							<a
+								title="Thiết bị đo m&#244;i trường"
+								href="/danh-muc/${value.slug}">
+								${value.name}
+							</a>
+						</h2>
+						<div>
+							<a href="/danh-muc/${value.slug}"><img src='${value.avt}' width='100%' alt='${value.name}'/></a>
+						</div>
+					</div>
+				</div>
+					`
+					
+				})
+			}
+		})()
+	</script>
+
+
+		
+	</body>
+</html>

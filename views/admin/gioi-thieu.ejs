@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>DASHMIN - Bootstrap Admin Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="<%= process.env.FAVICON_PATH %>"
+    />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+
+    <link
+      href="/views/admin/lib/owlcarousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/views/admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/views/admin/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="/views/admin/css/style.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+      <!-- Spinner Start -->
+      <div
+        id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="spinner-border text-primary"
+          style="width: 3rem; height: 3rem"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div class="sidebar pe-4 pb-3">
+        <nav class="navbar bg-light navbar-light">
+          <a href="/admin/home" class="navbar-brand mx-4 mb-3">
+            <img src="/public/static/logo.png" width="200px" alt="" />
+          </a>
+
+          <div class="navbar-nav w-100">
+            <a href="/san-pham/admin" class="nav-item nav-link"
+              ><i class="fa fa-tachometer-alt me-2"></i>Sản phẩm</a
+            >
+            <a href="/gioi-thieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-th me-2"></i>Trang giới thiệu</a
+            >
+
+            <a href="/tin-tuc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Bài viết</a
+            >
+
+            <a href="/account/admin/tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-user me-2"></i>Tài khoản</a
+            >
+
+            <a href="/danh-muc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh mục</a
+            >
+            <a href="/hang-san-xuat/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Hãng sản xuất</a
+            >
+            <a href="/account/list-tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh sách tài khoản</a
+            >
+            <a href="/nha-cung-cap/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Nhà cung cấp</a
+            >
+            <a href="/khach-hang/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Khách hàng</a
+            >
+            <a href="/lien-he/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Liên hệ</a
+            >
+            <a href="/thuong-hieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Thương hiệu</a
+            >
+          </div>
+        </nav>
+      </div>
+      <div class="content">
+        <form
+          id="formUpdateInfo"
+          action="/gioi-thieu/update"
+          enctype="multipart/form-data"
+        >
+          <div class="">
+            <textarea id="editor" name="detail"><%= intro.detail %></textarea>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="title"
+              name="name"
+              value="<%= intro.name %>"
+            />
+            <label for="floatingInput">Name</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input type="file" id="inputImage" accept="image/*" name="avt" />
+            <img
+              id="previewImage"
+              src="<%= process.env.BASE_URL+intro.avt %>"
+              alt="Preview"
+              style="max-width: 200px; max-height: 200px"
+            />
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="des"
+              name="describe"
+              value="<%= intro.describe %>"
+            />
+            <label for="floatingPassword">Mô tả</label>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-success">Lưu bài viết</button>
+          </div>
+        </form>
+      </div>
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+        <i class="bi bi-arrow-up"></i>
+      </a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/views/admin/lib/chart/chart.min.js"></script>
+    <script src="/views/admin/lib/easing/easing.min.js"></script>
+    <script src="/views/admin/lib/waypoints/waypoints.min.js"></script>
+    <script src="/views/admin/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/views/admin/js/main.js"></script>
+    <script src="/views/admin/ckeditor/ckeditor.js"></script>
+    <script>
+      CKEDITOR.replace("editor", {});
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const inputImage = document.getElementById("inputImage");
+        const previewImage = document.getElementById("previewImage");
+        inputImage.addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              previewImage.src = e.target.result;
+              previewImage.alt = "Preview"; // Cập nhật thuộc tính alt nếu muốn
+            };
+            reader.readAsDataURL(file); // Đọc file dưới dạng URL dữ liệu
+          } else {
+            previewImage.src = ""; // Xóa src nếu không có file nào được chọn
+            previewImage.alt = "No image selected";
+          }
+        });
+      });
+    </script>
+    <script>
+      CKEDITOR.instances.editor.on("instanceReady", function () {
+        const form = document.getElementById("formUpdateInfo");
+        form.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const detailValue = CKEDITOR.instances.editor.getData();
+          const formData = new FormData(form);
+          formData.set("detail", detailValue);
+          fetch(form.action, {
+            method: "PUT",
+            body: formData,
+          })
+            .then((response) => {
+              if (response.ok) {
+                alert("Cập nhật thành công!");
+                window.location.reload();
+              } else {
+                alert("Cập nhật thất bại.");
+                return response.json(); // Trả về phản hồi lỗi dưới dạng JSON nếu muốn xử lý chi tiết
+              }
+            })
+            .then((data) => {
+              if (data) {
+                console.error("Error:", data.message);
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Có lỗi xảy ra, không thể cập nhật.");
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

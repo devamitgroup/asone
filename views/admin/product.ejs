@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title><%= title %></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="<%=process.env.FAVICON_PATH %>"
+    />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link
+      href="/views/admin/lib/owlcarousel/assets/owl.carousel.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/views/admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/views/admin/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="/views/admin/css/style.css" rel="stylesheet" />
+    <style>
+      .pagination button {
+        margin-right: 5px;
+        padding: 5px 10px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        cursor: pointer;
+      }
+
+      .pagination .active {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .pagination button:hover {
+        background-color: #e7e7e7;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+      <!-- Spinner Start -->
+      <div
+        id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+      >
+        <div
+          class="spinner-border text-primary"
+          style="width: 3rem; height: 3rem"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <!-- Spinner End -->
+
+      <!-- Sidebar Start -->
+      <div class="sidebar pe-4 pb-3">
+        <nav class="navbar bg-light navbar-light">
+          <a href="/admin/home" class="navbar-brand mx-4 mb-3">
+            <img src="/public/static/logo.png" width="200px" alt="" />
+          </a>
+
+          <div class="navbar-nav w-100">
+            <a href="/san-pham/admin" class="nav-item nav-link"
+              ><i class="fa fa-tachometer-alt me-2"></i>Sản phẩm</a
+            >
+            <a href="/gioi-thieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-th me-2"></i>Trang giới thiệu</a
+            >
+
+            <a href="/tin-tuc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Bài viết</a
+            >
+
+            <a href="/account/admin/tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-user me-2"></i>Tài khoản</a
+            >
+
+            <a href="/danh-muc/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh mục</a
+            >
+            <a href="/hang-san-xuat/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Hãng sản xuất</a
+            >
+            <a href="/account/list-tai-khoan" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Danh sách tài khoản</a
+            >
+            <a href="/nha-cung-cap/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Nhà cung cấp</a
+            >
+            <a href="/khach-hang/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Khách hàng</a
+            >
+            <a href="/lien-he/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Liên hệ</a
+            >
+            <a href="/thuong-hieu/admin" class="nav-item nav-link"
+              ><i class="fa fa-table me-2"></i>Thương hiệu</a
+            >
+          </div>
+        </nav>
+      </div>
+      <!-- Sidebar End -->
+
+      <!-- Content Start -->
+      <div class="content">
+        <div class="container-fluid pt-4 px-4">
+          <div>
+            <div class="d-flex">
+              <input
+                id="searchInput"
+                class="form-control me-2"
+                type="search"
+                placeholder="Search product"
+                aria-label="Search product"
+              />
+              <button id="searchButton" class="btn btn-outline-success">
+                Search
+              </button>
+            </div>
+          </div>
+          <div class="row g-4">
+            <div class="col-12">
+              <div class="bg-light rounded h-100 p-4">
+                <div class="d-flex justify-content-between py-4">
+                  <h2 class="mb-4">Danh mục sản phẩm</h2>
+                  <h5 class="mb-4">Tổng : <span id="sum"></span></h5>
+                  <div>
+                    <a href="/san-pham/them-san-pham" class="btn btn-primary"
+                      >Thêm sản phẩm</a
+                    >
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Tên</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Hãng sản xuất</th>
+                        <th scope="col">Ảnh</th>
+                        <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">Hành động</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table"></tbody>
+                  </table>
+                  <div id="pagination" class="pagination"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Content End -->
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+        ><i class="bi bi-arrow-up"></i
+      ></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/views/admin/lib/chart/chart.min.js"></script>
+    <script src="/views/admin/lib/easing/easing.min.js"></script>
+    <script src="/views/admin/lib/waypoints/waypoints.min.js"></script>
+    <script src="/views/admin/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/views/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/views/admin/js/main.js"></script>
+
+    <script>
+      function deleteProduct(productId) {
+        if (!confirm("Bạn có chắc chắn muốn xóa sản phẩm này không?")) {
+          return;
+        }
+
+        fetch(`/san-pham/delete/${productId}`, {
+          method: "DELETE",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Sản phẩm đã được xóa thành công.");
+              // Tải lại danh sách sản phẩm hoặc xóa hàng trong bảng
+              window.location.reload();
+            } else {
+              throw new Error(data.message);
+            }
+          })
+          .catch((error) => {
+            console.error("Lỗi khi xóa sản phẩm:", error);
+            alert("Đã có lỗi xảy ra khi xóa sản phẩm.");
+          });
+      }
+
+      var BASE_URL = "<%- process.env.BASE_URL %>";
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const keyword = urlParams.get("keyword");
+        loadPage(1, keyword);
+      });
+
+      function loadPage(page, keyword = "") {
+        const endpoint = keyword
+          ? `/san-pham/tim-kiem?keyword=${encodeURIComponent(keyword)}`
+          : `/san-pham?page=${page}`;
+        fetch(endpoint)
+          .then((response) => response.json())
+          .then((data) => {
+            const products = keyword ? data : data.products;
+            const table = document.getElementById("table");
+            const pagination = document.getElementById("pagination");
+            const sum = document.getElementById("sum");
+            sum.textContent = data.count;
+            table.innerHTML = "";
+            pagination.innerHTML = "";
+
+            products.forEach((product) => {
+              const row = table.insertRow();
+              row.id = `row-${product._id}`; // Đặt ID cho mỗi hàng
+
+              row.insertCell(0).textContent = product.name;
+              row.insertCell(1).textContent = product.model;
+              row.insertCell(2).textContent = product.manufacturer
+                ? product.manufacturer.name
+                : "";
+              row.insertCell(3).innerHTML =
+                product.images && product.images[0]
+                  ? `<img src="${
+                      BASE_URL + product.images[0]
+                    }" style="width: 50px; height: auto;">`
+                  : "No image";
+              row.insertCell(4).textContent = product.idProduct;
+              const actionsCell = row.insertCell(5);
+              actionsCell.innerHTML =
+                `<a href='/san-pham/admin/${product.slug}' class="btn btn-info">Edit</a> ` +
+                `<button onclick="deleteProduct('${product._id}')" class='btn btn-danger'>Delete</button>`;
+            });
+
+            if (!keyword) {
+              // Hiển thị nút Prev
+              if (page > 1) {
+                const prevButton = document.createElement("button");
+                prevButton.textContent = "Prev";
+                prevButton.onclick = function () {
+                  loadPage(page - 1);
+                };
+                pagination.appendChild(prevButton);
+              }
+
+              // Tạo các nút cho phân trang
+              let maxPage = Math.min(page + 2, data.totalPages);
+              let minPage = Math.max(1, page - 2);
+              for (let i = minPage; i <= maxPage; i++) {
+                const pageButton = document.createElement("button");
+                pageButton.textContent = i;
+                pageButton.onclick = function () {
+                  loadPage(i);
+                };
+                if (i === page) pageButton.classList.add("active");
+                pagination.appendChild(pageButton);
+              }
+
+              // Hiển thị nút Next
+              if (page < data.totalPages) {
+                const nextButton = document.createElement("button");
+                nextButton.textContent = "Next";
+                nextButton.onclick = function () {
+                  loadPage(page + 1);
+                };
+                pagination.appendChild(nextButton);
+              }
+            }
+          })
+          .catch((error) => {
+            console.error("Error loading products:", error);
+          });
+      }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchButton = document.getElementById("searchButton");
+        const searchInput = document.getElementById("searchInput");
+
+        searchButton.addEventListener("click", function () {
+          const keyword = searchInput.value.trim();
+          if (!keyword) {
+            alert("Please enter a keyword to search.");
+            return;
+          }
+          window.location.href = `/san-pham/admin?keyword=${encodeURIComponent(
+            keyword
+          )}`;
+        });
+      });
+    </script>
+  </body>
+</html>
