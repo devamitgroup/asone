@@ -1865,7 +1865,11 @@ header.fixed {
 }
 .brand a {
   display: block;
-  margin: 10px 0;
+  /* margin: 10px 0; */
+}
+.owl-stage {
+  display: flex;
+  align-items: center;
 }
 #SearchClear {
   display: none;
@@ -2407,8 +2411,6 @@ header.fixed {
 }
 .brand-i img {
   height: auto !important;
-  max-height: 100%;
-  width: auto !important;
 }
 
 .logo img {
