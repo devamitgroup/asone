@@ -296,14 +296,7 @@
               <p><%= product.idProduct %></p>
             </div>
           </div>
-          <div class="clearfix">
-            <a class="dhotline" href="tel:0888406268">
-              <i class="fa fa-phone"></i> 0888406268
-            </a>
-            <a class="demail" href="mailto:sales@daiduongautomation.com">
-              <i class="fa fa-envelope"></i> sales@daiduongautomation.com
-            </a>
-          </div>
+          <div class="clearfix" id="infolive"></div>
 
           <div class="note-product">
             <div class="box-note">
@@ -907,6 +900,22 @@
             `;
           });
         }
+      })();
+    </script>
+    <script>
+      (async () => {
+        const res = await fetch("/hotline");
+        const data = await res.json();
+        console.log(data);
+        const info = document.querySelector("#infolive");
+        info.innerHTML = `
+             <a class="dhotline" href="tel:${data.phone}">
+              <i class="fa fa-phone"></i> ${data.phone}
+            </a>
+            <a class="demail" href="mailto:${data.email}">
+              <i class="fa fa-envelope"></i> ${data.email}
+            </a>
+        `;
       })();
     </script>
   </body>

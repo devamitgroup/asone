@@ -29,6 +29,7 @@ app.use("/nha-cung-cap", require("./routes/SupplierRoute"));
 app.use("/khach-hang", require("./routes/ClientRoute"));
 app.use("/lien-he", require("./routes/ContactRoute"));
 app.use("/thuong-hieu", require("./routes/BrandRoute"));
+app.use("/hotline", require("./routes/HotlineRoute"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

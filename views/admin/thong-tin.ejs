@@ -8,7 +8,7 @@
     <meta content="" name="description" />
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon" />
+    <link rel="icon" type="image/x-icon" href="<%= faviconPath %>" />
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -109,54 +109,39 @@
           </div>
         </nav>
       </div>
-      <div class="content py-3">
-        <h2>Đổi mật khẩu</h2>
-        <form id="forgotPasswordForm">
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
-              >Nhập mật khẩu hiện tại</label
-            >
+      <div class="content">
+        <form action="/hotline" id="hotlineForm" enctype="multipart/form-data">
+          <div class="form-floating mb-3">
             <input
-              id="currentPassword"
-              type="password"
+              type="text"
               class="form-control"
-              aria-describedby="emailHelp"
-              required
+              id="phone"
+              name="phone"
+              value=""
+              placeholder="Model"
             />
+            <label for="floatingPassword">Số điện thoại</label>
           </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
-              >Nhập mật khẩu mới</label
-            >
+          <div class="form-floating mb-3">
             <input
-              id="newPassword"
-              type="passwordnew"
+              type="text"
               class="form-control"
-              aria-describedby="emailHelp"
-              required
+              id="email"
+              name="email"
+              value=""
+              placeholder="Model"
             />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
-              >Xác nhận mật khẩu mới</label
-            >
-            <input
-              id="confirmNewPassword"
-              type="passwordnewenter"
-              class="form-control"
-              aria-describedby="emailHelp"
-              required
-            />
-          </div>
-          <button type="submit" class="btn btn-primary">Đổi mật khẩu</button>
-        </form>
-        <br /><br /><br /><br /><br /><br /><br />
-        <button class="btn btn-primary" onclick="logout()">Đăng xuất</button>
-      </div>
+            <label for="floatingPassword">Email</label>
 
-      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
-        ><i class="bi bi-arrow-up"></i
-      ></a>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-success">Lưu</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+        <i class="bi bi-arrow-up"></i>
+      </a>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -168,62 +153,71 @@
     <script src="/views/admin/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="/views/admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="/views/admin/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.18.0/js/md5.min.js"></script>
+    <script src="/views/admin/ckeditor/ckeditor.js"></script>
+    <!-- Thêm phần script để fetch dữ liệu từ server -->
     <script>
-      const logout = () => {
-        localStorage.removeItem("userId");
-        window.location.href = "/admin";
-      };
       document.addEventListener("DOMContentLoaded", function () {
-        const form = document.getElementById("forgotPasswordForm");
-
-        form.addEventListener("submit", async function (event) {
-          event.preventDefault(); // Ngăn chặn hành vi submit mặc định
-
-          // Lấy giá trị từ form
-          const currentPassword =
-            document.getElementById("currentPassword").value;
-          const newPassword = document.getElementById("newPassword").value;
-          const confirmNewPassword =
-            document.getElementById("confirmNewPassword").value;
-
-          if (newPassword !== confirmNewPassword) {
-            alert("Mật khẩu mới và xác nhận mật khẩu không khớp.");
-            return;
-          }
-
-          // Lấy userId từ localStorage
-          const userId = localStorage.getItem("userId");
-          if (!userId) {
-            alert("Không tìm thấy ID người dùng.");
-            return;
-          }
-
-          // Gửi request đến server
-          try {
-            const response = await fetch(`/account/change-password/${userId}`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ currentPassword, newPassword }),
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-              alert("Đổi mật khẩu thành công.");
-              form.reset(); // Đặt lại form sau khi đổi mật khẩu thành công
-              window.location.href = "/admin";
-            } else {
-              alert(
-                result.message || "Đổi mật khẩu thất bại. Vui lòng thử lại."
-              );
+        // Tạo một fetch request để lấy dữ liệu từ server
+        fetch("/hotline")
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
             }
-          } catch (error) {
-            console.error("Error:", error);
-            alert("Đã xảy ra lỗi. Vui lòng thử lại.");
-          }
+            return response.json(); // Chuyển đổi dữ liệu từ JSON sang JavaScript object
+          })
+          .then((data) => {
+            // Xử lý dữ liệu khi fetch thành công
+            if (data.phone) {
+              document.getElementById("phone").value = data.phone; // Đặt giá trị cho input phone
+            }
+            if (data.email) {
+              document.getElementById("email").value = data.email; // Đặt giá trị cho input email
+            }
+          })
+          .catch((error) => {
+            // Xử lý khi có lỗi fetch dữ liệu
+            console.error("Fetch error:", error);
+          });
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("hotlineForm");
+
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); // Ngăn chặn hành vi submit mặc định của form
+
+          const formData = new FormData(this);
+          const jsonData = {
+            phone: formData.get("phone"),
+            email: formData.get("email"),
+          };
+
+          fetch(form.action, {
+            method: "PUT", // Thay đổi phương thức thành PUT
+            headers: {
+              "Content-Type": "application/json", // Đặt Content-Type là application/json
+            },
+            body: JSON.stringify(jsonData), // Chuyển đối tượng JSON thành chuỗi
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("HTTP status " + response.status);
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.message) {
+                alert(data.message); // Hiển thị thông báo từ server
+              } else {
+                alert("Cập nhật thông tin thành công!");
+                window.location.reload(); // Tải lại trang để cập nhật dữ liệu trên UI
+              }
+            })
+            .catch((error) => {
+              console.error("Lỗi:", error);
+              alert("Đã có lỗi xảy ra khi cập nhật thông tin.");
+            });
         });
       });
     </script>
