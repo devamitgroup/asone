@@ -117,7 +117,7 @@
             <a href="/account/list-tai-khoan" class="nav-item nav-link"
               ><i class="fa fa-table me-2"></i>Danh sách tài khoản</a
             >
-            <a href="/nha-cung-cap/admins" class="nav-item nav-link"
+            <a href="/nha-cung-cap/admin" class="nav-item nav-link"
               ><i class="fa fa-table me-2"></i>Nhà cung cấp</a
             >
             <a href="/khach-hang/admin" class="nav-item nav-link"
@@ -241,6 +241,18 @@
         loadPage(1, keyword);
       });
 
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(
+          () => {
+            alert("Link đã được sao chép.");
+          },
+          (err) => {
+            console.error("Lỗi khi sao chép link: ", err);
+            alert("Đã có lỗi xảy ra khi sao chép link.");
+          }
+        );
+      }
+
       function loadPage(page, keyword = "") {
         const endpoint = keyword
           ? `/san-pham/tim-kiem?keyword=${encodeURIComponent(keyword)}`
@@ -260,7 +272,20 @@
               const row = table.insertRow();
               row.id = `row-${product._id}`; // Đặt ID cho mỗi hàng
 
-              row.insertCell(0).textContent = product.name;
+              const nameCell = row.insertCell(0);
+              const link = `${BASE_URL}san-pham/${product.slug}`;
+              nameCell.innerHTML = `<a href="${link}">${product.name}</a>`;
+              const copyButton = document.createElement("button");
+              copyButton.textContent = "Copy Link";
+              copyButton.classList.add(
+                "btn",
+                "btn-sm",
+                "btn-secondary",
+                "ms-2"
+              );
+              copyButton.onclick = () => copyToClipboard(link);
+              nameCell.appendChild(copyButton);
+
               row.insertCell(1).textContent = product.model;
               row.insertCell(2).textContent = product.manufacturer
                 ? product.manufacturer.name
