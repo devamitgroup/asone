@@ -11,7 +11,7 @@ router.get("/admin/home", (req, res) => {
 
 router.get("/", (req, res) => {
   res.render("client/index.ejs", {
-    title: "AS ONE Việt Nam",
+    title: "Đại Lý AS ONE Việt Nam",
     BASE_URL: process.env.BASE_URL,
     faviconPath: process.env.FAVICON_PATH_CLIENT,
   });
