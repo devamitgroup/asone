@@ -1,0 +1,64 @@
+[{
+  "_id": {
+    "$oid": "6676408f1d2a73fd0f8b3bda"
+  },
+  "name": "hoya",
+  "avt": "public/uploads/1719025807783.png",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640a81d2a73fd0f8b3bdd"
+  },
+  "name": "hyosung",
+  "avt": "public/uploads/1719025832640.png",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640b61d2a73fd0f8b3be0"
+  },
+  "name": "suheung",
+  "avt": "public/uploads/1719025846261.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640c31d2a73fd0f8b3be3"
+  },
+  "name": "unilever",
+  "avt": "public/uploads/1719025859213.png",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640cf1d2a73fd0f8b3be6"
+  },
+  "name": "kumho",
+  "avt": "public/uploads/1719025871136.png",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640d71d2a73fd0f8b3be9"
+  },
+  "name": "env",
+  "avt": "public/uploads/1719025879449.webp",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640df1d2a73fd0f8b3bec"
+  },
+  "name": "vinfast",
+  "avt": "public/uploads/1719025887801.jpg",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640e81d2a73fd0f8b3bef"
+  },
+  "name": "terumo",
+  "avt": "public/uploads/1719025896604.png",
+  "__v": 0
+}]

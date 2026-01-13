@@ -1,0 +1,100 @@
+[{
+  "_id": {
+    "$oid": "666578083e67d999edbf7098"
+  },
+  "avt": "public/uploads/1717925896905.png",
+  "slug": "kyoritsu-chemical",
+  "name": "KYORITSU CHEMICAL ",
+  "__v": 0,
+  "detail": "<p>adasdasdsadsadasd</p>\r\n"
+},
+{
+  "_id": {
+    "$oid": "667640001d2a73fd0f8b3ba0"
+  },
+  "avt": "public/uploads/1719025664839.webp",
+  "slug": "as-one",
+  "name": "as one ",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6676400d1d2a73fd0f8b3bad"
+  },
+  "avt": "public/uploads/1719025677826.webp",
+  "slug": "nitto",
+  "name": "nitto",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640161d2a73fd0f8b3bb0"
+  },
+  "avt": "public/uploads/1719025686424.png",
+  "slug": "sdsad",
+  "name": "sdsad",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640271d2a73fd0f8b3bb6"
+  },
+  "avt": "public/uploads/1719025703761.png",
+  "slug": "aaa",
+  "name": "aaa",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640321d2a73fd0f8b3bb9"
+  },
+  "avt": "public/uploads/1719025714895.jpg",
+  "slug": "advantec",
+  "name": "advantec",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6676403c1d2a73fd0f8b3bbc"
+  },
+  "avt": "public/uploads/1719025724897.jpg",
+  "slug": "koganei",
+  "name": "koganei",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640471d2a73fd0f8b3bc1"
+  },
+  "avt": "public/uploads/1719025735159.jpg",
+  "slug": "qqqq",
+  "name": "qqqq",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640511d2a73fd0f8b3bc4"
+  },
+  "avt": "public/uploads/1719025745951.png",
+  "slug": "yamato",
+  "name": "yamato",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6676405a1d2a73fd0f8b3bc7"
+  },
+  "avt": "public/uploads/1719025754244.png",
+  "slug": "hozan",
+  "name": "hozan",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667640641d2a73fd0f8b3bca"
+  },
+  "avt": "public/uploads/1719025764549.jpg",
+  "slug": "trusco",
+  "name": "trusco",
+  "__v": 0
+}]

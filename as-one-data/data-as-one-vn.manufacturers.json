@@ -1,0 +1,715 @@
+[{
+  "_id": {
+    "$oid": "666578663e67d999edbf70cd"
+  },
+  "name": "AS ONE",
+  "createdAt": {
+    "$date": "2024-06-09T09:39:50.263Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-09T10:15:58.911Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667d2c525e916c20bcbe95b3"
+  },
+  "name": "RKC INSTRUMENT",
+  "createdAt": {
+    "$date": "2024-06-27T09:09:38.351Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-27T09:09:38.351Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668272c85e916c20bcbebe0f"
+  },
+  "name": "Ohkura Electric",
+  "createdAt": {
+    "$date": "2024-07-01T09:11:36.447Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-01T09:11:36.447Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668272eb5e916c20bcbebe12"
+  },
+  "name": "Azbil Corporation",
+  "createdAt": {
+    "$date": "2024-07-01T09:12:11.263Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-01T09:12:11.263Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6686c0ce6f511c4e504b08f6"
+  },
+  "name": "Shimadzu Corporation",
+  "createdAt": {
+    "$date": "2024-07-04T15:33:34.628Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-04T15:33:34.628Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6687c1686f511c4e504b0c78"
+  },
+  "name": "NMB Technologies",
+  "createdAt": {
+    "$date": "2024-07-05T09:48:24.876Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-05T09:48:24.876Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688b7af6f511c4e504b1125"
+  },
+  "name": " MAYEKAWA Việt Nam",
+  "createdAt": {
+    "$date": "2024-07-06T03:19:11.443Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T03:19:11.443Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688cf796f511c4e504b137a"
+  },
+  "name": "Oriental Motor Việt Nam",
+  "createdAt": {
+    "$date": "2024-07-06T05:00:41.598Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T05:00:41.598Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688e5e46f511c4e504b149c"
+  },
+  "name": "Schneider Electric",
+  "createdAt": {
+    "$date": "2024-07-06T06:36:20.915Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T06:36:20.915Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688eb756f511c4e504b14cc"
+  },
+  "name": "PARKER ",
+  "createdAt": {
+    "$date": "2024-07-06T07:00:05.077Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T07:00:05.077Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688ec7c6f511c4e504b14e9"
+  },
+  "name": "SMC ",
+  "createdAt": {
+    "$date": "2024-07-06T07:04:28.005Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T07:04:28.005Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688eda86f511c4e504b1500"
+  },
+  "name": "SIGMAKOKI ",
+  "createdAt": {
+    "$date": "2024-07-06T07:09:28.315Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T07:09:28.315Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668917386f511c4e504b15ba"
+  },
+  "name": "OMRON",
+  "createdAt": {
+    "$date": "2024-07-06T10:06:48.920Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T10:06:48.920Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66891fef6f511c4e504b177a"
+  },
+  "name": "TOHO ELECTRONICS",
+  "createdAt": {
+    "$date": "2024-07-06T10:43:59.463Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T10:43:59.463Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668a17766f511c4e504b191f"
+  },
+  "name": "CUSTOM corporation",
+  "createdAt": {
+    "$date": "2024-07-07T04:20:06.848Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-07T04:20:06.848Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668bde956f511c4e504b240f"
+  },
+  "name": "CHINO Corporation",
+  "createdAt": {
+    "$date": "2024-07-08T12:41:57.990Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-08T12:41:57.990Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668d06be6f511c4e504b2c26"
+  },
+  "name": "MALCOM",
+  "createdAt": {
+    "$date": "2024-07-09T09:45:34.127Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T09:45:34.127Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668e56a56f511c4e504b3131"
+  },
+  "name": "Globeheat",
+  "createdAt": {
+    "$date": "2024-07-10T09:38:45.206Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-10T09:38:45.206Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668f5f5f6f511c4e504b34d2"
+  },
+  "name": "TAKAWA ELECTRONICS INC",
+  "createdAt": {
+    "$date": "2024-07-11T04:28:15.971Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-04T10:22:13.182Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6690b6b86f511c4e504b3a33"
+  },
+  "name": "NITO ",
+  "createdAt": {
+    "$date": "2024-07-12T04:53:12.867Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T04:53:12.867Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "669208536f511c4e504b3dc5"
+  },
+  "name": "Allen-Bradley",
+  "createdAt": {
+    "$date": "2024-07-13T04:53:39.593Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-13T04:53:39.593Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66966e7e6f511c4e504b4720"
+  },
+  "name": "Piab",
+  "createdAt": {
+    "$date": "2024-07-16T12:58:38.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-16T12:58:38.752Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "669673a66f511c4e504b477a"
+  },
+  "name": "Ikeuchi & Co.,LTD",
+  "createdAt": {
+    "$date": "2024-07-16T13:20:38.660Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-16T13:20:38.660Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "669bd6a36f511c4e504b4f60"
+  },
+  "name": "ULVAC KIKO",
+  "createdAt": {
+    "$date": "2024-07-20T15:24:19.879Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-20T15:24:19.879Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a0afe96f511c4e504b5a60"
+  },
+  "name": "ABB",
+  "createdAt": {
+    "$date": "2024-07-24T07:40:25.980Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-24T07:40:25.980Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66b329b86f511c4e504b8431"
+  },
+  "name": "Schleuniger",
+  "createdAt": {
+    "$date": "2024-08-07T08:00:56.356Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-07T08:00:56.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c5bddd6f511c4e504ba4c8"
+  },
+  "name": "NISSEI",
+  "createdAt": {
+    "$date": "2024-08-21T10:13:49.941Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-21T10:13:49.941Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c6b46a6f511c4e504ba603"
+  },
+  "name": "Honeywell - Kromschroder",
+  "createdAt": {
+    "$date": "2024-08-22T03:45:46.006Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-22T03:45:46.006Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c992146f511c4e504bab05"
+  },
+  "name": "DUMBBELL CO.,LTD",
+  "createdAt": {
+    "$date": "2024-08-24T07:56:04.070Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-24T07:56:04.070Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6746a92a6f511c4e504c6e39"
+  },
+  "name": "SK SATO ",
+  "createdAt": {
+    "$date": "2024-11-27T05:07:54.273Z"
+  },
+  "updatedAt": {
+    "$date": "2024-11-27T05:07:54.273Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6751349f6f511c4e504c838a"
+  },
+  "name": "Hakko Electric",
+  "createdAt": {
+    "$date": "2024-12-05T05:05:35.101Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-05T05:05:35.101Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67569d536f511c4e504c8b32"
+  },
+  "name": "Sanyo Denki",
+  "createdAt": {
+    "$date": "2024-12-09T07:33:39.386Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-09T07:33:39.386Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6760f79a6f511c4e504c9a2e"
+  },
+  "name": "A&D Company",
+  "createdAt": {
+    "$date": "2024-12-17T04:01:30.795Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-17T04:01:30.795Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "677ca2566f511c4e504cbc0c"
+  },
+  "name": "SMC Corporation (Viet Nam)",
+  "createdAt": {
+    "$date": "2025-01-07T03:41:10.184Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-07T03:41:10.184Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6785eae36f511c4e504cc93c"
+  },
+  "name": " UINICS CO.,LTD",
+  "createdAt": {
+    "$date": "2025-01-14T04:41:08.001Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-14T04:41:08.001Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678e284b6f511c4e504cd567"
+  },
+  "name": "KOKUSAI Chart Paper",
+  "createdAt": {
+    "$date": "2025-01-20T10:41:15.838Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-20T10:41:15.838Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "679207416f511c4e504cdbb3"
+  },
+  "name": "YAMARI INDUSTRIES",
+  "createdAt": {
+    "$date": "2025-01-23T09:09:21.004Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-23T09:09:21.004Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67b7e38a6f511c4e504d0cc3"
+  },
+  "name": "Yamato Scale Co., Ltd",
+  "createdAt": {
+    "$date": "2025-02-21T02:23:06.315Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-21T02:23:06.315Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67b978626f511c4e504d0fb7"
+  },
+  "name": "TRUSCO トラスコ中山株式会社",
+  "createdAt": {
+    "$date": "2025-02-22T07:10:26.745Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-22T07:10:26.745Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ce97cd6f511c4e504d3ade"
+  },
+  "name": "NISSEI CORPORATION",
+  "createdAt": {
+    "$date": "2025-03-10T07:42:05.446Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-10T07:42:05.446Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67e27b347b158cfdf304b5fd"
+  },
+  "name": "KANSAI Automation",
+  "createdAt": {
+    "$date": "2025-03-25T09:45:24.856Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-25T09:45:24.856Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67fc79d97b158cfdf304e951"
+  },
+  "name": "Koyo",
+  "createdAt": {
+    "$date": "2025-04-14T02:58:33.093Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-14T02:58:33.093Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67fdc7277b158cfdf304ed98"
+  },
+  "name": "Pilz Việt Nam",
+  "createdAt": {
+    "$date": "2025-04-15T02:40:39.959Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-15T02:40:39.959Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6805c2347b158cfdf304f91a"
+  },
+  "name": "KEYENCE VIETNAM",
+  "createdAt": {
+    "$date": "2025-04-21T03:57:40.333Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-21T03:57:40.333Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6825b25da6aa3b032e28ef9d"
+  },
+  "name": "TAIYO",
+  "createdAt": {
+    "$date": "2025-05-15T09:22:37.968Z"
+  },
+  "updatedAt": {
+    "$date": "2025-05-15T09:22:37.968Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68455ea5a6aa3b032e292539"
+  },
+  "name": "AMPROBE",
+  "createdAt": {
+    "$date": "2025-06-08T09:57:57.933Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-08T09:57:57.933Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688c6871a6aa3b032e29d379"
+  },
+  "name": "Graphic Controls",
+  "createdAt": {
+    "$date": "2025-08-01T07:10:41.427Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-01T07:10:41.427Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688c70d5a6aa3b032e29d47a"
+  },
+  "name": "DeltaTrak Inc.",
+  "createdAt": {
+    "$date": "2025-08-01T07:46:29.251Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-01T07:46:29.251Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6894666ba6aa3b032e29e50c"
+  },
+  "name": "HOZAN CO., LTD",
+  "createdAt": {
+    "$date": "2025-08-07T08:40:11.234Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-07T08:40:11.234Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6896fa73a6aa3b032e29e8c1"
+  },
+  "name": "YOKOGAWA ELECTRIC",
+  "createdAt": {
+    "$date": "2025-08-09T07:36:19.277Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-09T07:36:19.277Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689c3beba6aa3b032e29f059"
+  },
+  "name": "QINGDAO AIP INTELLIGENT INSTRUMENT CO., LTD",
+  "createdAt": {
+    "$date": "2025-08-13T07:16:59.750Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-13T07:16:59.750Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68bd3de9a6aa3b032e2a28f6"
+  },
+  "name": "NOVUS Automation",
+  "createdAt": {
+    "$date": "2025-09-07T08:10:17.929Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-07T08:10:17.929Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68c796a5a6aa3b032e2a36ec"
+  },
+  "name": "TAKAWA ELECTRONICS INC",
+  "createdAt": {
+    "$date": "2025-09-15T04:31:33.762Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-15T04:31:33.762Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e4c9d5a6aa3b032e2a6237"
+  },
+  "name": "NITTO KOHKI CO., LTD.",
+  "createdAt": {
+    "$date": "2025-10-07T08:05:41.101Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-07T08:05:41.101Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68fc8037a6aa3b032e2a83a5"
+  },
+  "name": "NIHON DENSOKU Co., LTD ",
+  "createdAt": {
+    "$date": "2025-10-25T07:45:59.890Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-25T07:45:59.890Z"
+  },
+  "__v": 0
+}]

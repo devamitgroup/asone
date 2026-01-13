@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "666577c13e67d999edbf7083"
+  },
+  "username": "admin",
+  "password": "$2a$10$mCkU8MnaLvNvT35mibtUbe6x3wBgFxhUY7yP6IE1QqhDAZl1wOHQa",
+  "email": "daiduongholdings@gmail.com",
+  "role": "admin",
+  "createdAt": {
+    "$date": "2024-06-09T09:37:05.251Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-09T09:37:05.251Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,558 @@
+[{
+  "_id": {
+    "$oid": "666c3d3ef4467f50ef9a5441"
+  },
+  "name": "Bể ổn Nhiệt",
+  "slug": "be-on-nhiet",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-06-14T12:53:18.449Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-14T12:53:18.449Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666c45a9f4467f50ef9a5499"
+  },
+  "name": "Máy khuấy từ gia nhiệt ",
+  "slug": "may-khuay-tu-gia-nhiet",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-06-14T13:29:13.659Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-14T13:29:13.659Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "666c45b7f4467f50ef9a549c"
+  },
+  "name": "Bể rửa siêu âm ",
+  "slug": "be-rua-sieu-am",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-06-14T13:29:27.130Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-14T13:29:27.130Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "667d2c985e916c20bcbe95cc"
+  },
+  "name": "Cảm biến nhiệt độ ",
+  "slug": "cam-bien-nhiet-đo",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-06-27T09:10:48.255Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-27T09:10:48.255Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668272a75e916c20bcbebe04"
+  },
+  "name": "Bộ ghi dữ liệu nhiệt độ",
+  "slug": "bo-ghi-du-lieu-nhiet-đo",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-01T09:11:03.761Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-01T09:11:03.761Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6686c0b96f511c4e504b08f2"
+  },
+  "name": "Máy in nhiệt mini ",
+  "slug": "may-in-nhiet-mini",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-04T15:33:13.538Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-04T15:33:13.538Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6686c5506f511c4e504b09cf"
+  },
+  "name": "dây cặp nhiệt độ ",
+  "slug": "day-cap-nhiet-đo",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-04T15:52:48.795Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-04T15:52:48.795Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6686c7aa6f511c4e504b0a25"
+  },
+  "name": "Bộ điều khiển nhiệt độ ",
+  "slug": "bo-đieu-khien-nhiet-đo",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-04T16:02:50.117Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-04T16:02:50.117Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6687c17b6f511c4e504b0c82"
+  },
+  "name": "Cảm biến áp suất ",
+  "slug": "cam-bien-ap-suat",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-05T09:48:43.841Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-05T09:48:43.841Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688cf886f511c4e504b1383"
+  },
+  "name": "Bộ điều khiển ",
+  "slug": "bo-đieu-khien",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-06T05:00:56.957Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T05:00:56.957Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688e5cf6f511c4e504b1496"
+  },
+  "name": "Bộ chỉnh lưu ",
+  "slug": "bo-chinh-luu",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-06T06:35:59.447Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T06:35:59.447Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688eb5e6f511c4e504b14c8"
+  },
+  "name": "Khớp nối ",
+  "slug": "khop-noi",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-06T06:59:42.773Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T06:59:42.773Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688edb96f511c4e504b150b"
+  },
+  "name": "Bàn xoay ",
+  "slug": "ban-xoay",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-06T07:09:45.191Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T07:09:45.191Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6689174c6f511c4e504b15ca"
+  },
+  "name": "Bộ lưu điện ",
+  "slug": "bo-luu-đien",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-06T10:07:08.107Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-06T10:07:08.107Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6690b71d6f511c4e504b3a40"
+  },
+  "name": "Tủ nhôm",
+  "slug": "tu-nhom",
+  "parentCategory": {
+    "$oid": "668905966f511c4e504b1570"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-12T04:54:53.821Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-12T04:54:53.821Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6692086e6f511c4e504b3dce"
+  },
+  "name": "Khởi động mềm ",
+  "slug": "khoi-đong-mem",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-13T04:54:06.592Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-13T04:54:06.592Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66966ea36f511c4e504b4729"
+  },
+  "name": "Giác hút chân không ",
+  "slug": "giac-hut-chan-khong",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-16T12:59:15.403Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-16T12:59:15.403Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "669673c36f511c4e504b4783"
+  },
+  "name": "Vòi phun",
+  "slug": "voi-phun",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-16T13:21:07.888Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-16T13:21:07.888Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a0afdb6f511c4e504b5a5c"
+  },
+  "name": "Biến tần ",
+  "slug": "bien-tan",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-24T07:40:11.651Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-24T07:40:11.651Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a4b9766f511c4e504b65ac"
+  },
+  "name": "xi lanh điện ",
+  "slug": "xi-lanh-đien",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-27T09:10:14.945Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-27T09:10:14.945Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66a5b0b36f511c4e504b67c2"
+  },
+  "name": "Động cơ ",
+  "slug": "đong-co",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-28T02:45:07.827Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-28T02:45:07.827Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66c6b4936f511c4e504ba610"
+  },
+  "name": "Đầu đốt",
+  "slug": "đau-đot",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-08-22T03:46:27.375Z"
+  },
+  "updatedAt": {
+    "$date": "2024-08-22T03:46:27.375Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6760f7be6f511c4e504c9a3e"
+  },
+  "name": "Cân điện tử ",
+  "slug": "can-đien-tu",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-12-17T04:02:06.197Z"
+  },
+  "updatedAt": {
+    "$date": "2024-12-17T04:02:06.197Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "678e29596f511c4e504cd5b5"
+  },
+  "name": "Giấy ghi biểu đồ",
+  "slug": "giay-ghi-bieu-đo",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2025-01-20T10:45:45.815Z"
+  },
+  "updatedAt": {
+    "$date": "2025-01-20T10:45:45.815Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67b979156f511c4e504d0fe0"
+  },
+  "name": "Lọc khí ",
+  "slug": "loc-khi",
+  "parentCategory": {
+    "$oid": "6688cc376f511c4e504b12bf"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2025-02-22T07:13:25.023Z"
+  },
+  "updatedAt": {
+    "$date": "2025-02-22T07:13:25.023Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67c6d6ba6f511c4e504d2def"
+  },
+  "name": "Quạt làm mát ",
+  "slug": "quat-lam-mat",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2025-03-04T10:32:26.466Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-04T10:32:26.466Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67fdc9f17b158cfdf304edbb"
+  },
+  "name": "Rơ le an toàn",
+  "slug": "ro-le-an-toan",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2025-04-15T02:52:33.106Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-15T02:52:33.106Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "680744307b158cfdf304fd0e"
+  },
+  "name": "Camera ",
+  "slug": "camera",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2025-04-22T07:24:32.705Z"
+  },
+  "updatedAt": {
+    "$date": "2025-04-22T07:24:32.705Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68455ec2a6aa3b032e29254d"
+  },
+  "name": "Máy Phát Hiện Rò Rỉ Khí",
+  "slug": "may-phat-hien-ro-ri-khi",
+  "parentCategory": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2025-06-08T09:58:26.797Z"
+  },
+  "updatedAt": {
+    "$date": "2025-06-08T09:58:26.797Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688c6f80a6aa3b032e29d41c"
+  },
+  "name": "Giấy ghi biểu đồ",
+  "slug": " ",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2025-08-01T07:40:48.423Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-01T07:40:48.423Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "689467aba6aa3b032e29e523"
+  },
+  "name": "Nhíp gắp linh kiện ",
+  "slug": "nhip-gap-linh-kien",
+  "parentCategory": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "describe": "",
+  "createdAt": {
+    "$date": "2025-08-07T08:45:31.488Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-07T08:45:31.488Z"
+  },
+  "__v": 0
+}]

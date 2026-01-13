@@ -1,0 +1,64 @@
+[{
+  "_id": {
+    "$oid": "666578253e67d999edbf70a9"
+  },
+  "name": "Thiết Bị phòng thí nghiệm ",
+  "slug": "thiet-bi-phong-thi-nghiem",
+  "avt": "public/uploads/1720532868293.jpeg",
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-06-09T09:38:45.382Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T13:47:48.297Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6686bf806f511c4e504b088c"
+  },
+  "name": "Thiết bị tự động hoá ",
+  "slug": "thiet-bi-tu-đong-hoa",
+  "avt": "public/uploads/1720532892194.jpeg",
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-04T15:28:00.161Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T13:48:12.201Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6688cc376f511c4e504b12bf"
+  },
+  "name": "Thiết bị phòng sạch ",
+  "slug": "thiet-bi-phong-sach",
+  "avt": "public/uploads/1720532910121.jpeg",
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-06T04:46:47.946Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T13:48:30.127Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "668905966f511c4e504b1570"
+  },
+  "name": "Dụng cụ cơ khí ",
+  "slug": "dung-cu-co-khi",
+  "avt": "public/uploads/1720532927260.jpeg",
+  "describe": "",
+  "createdAt": {
+    "$date": "2024-07-06T08:51:34.874Z"
+  },
+  "updatedAt": {
+    "$date": "2024-07-09T13:48:47.263Z"
+  },
+  "__v": 0
+}]
