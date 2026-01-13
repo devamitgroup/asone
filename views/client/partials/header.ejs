@@ -1,0 +1,202 @@
+<header class="site-header">
+    <!-- Top Header: Logo, Quote, Languages -->
+    <div class="header-main">
+        <div class="container-custom header-flex">
+            <!-- Mobile Menu Trigger -->
+            <div class="mobile-toggle visible-xs">
+                <button id="open-mobile-menu" class="m-menu-btn">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- Logo -->
+            <div class="logo-area">
+                <a href="/" class="main-logo">
+                    <img alt="Logo" src="/views/client/Content/Uploads/images/logo.png" />
+                </a>
+            </div>
+
+            <!-- Action Area: Search (Desktop only in top or nav? User said nav, let's put it in nav later or here?) 
+                 User previously asked for search in navigation. Let's keep it there. -->
+            
+            <div class="header-actions hidden-xs">
+                <div class="action-top">
+                    <!-- Request Quote Button -->
+                    <a href="mailto:sales@daiduongautomation.com" class="btn-quote">
+                        <img src="https://lotusarchvn.com/images/icon3.svg" alt="" width="20">
+                        <span>Yêu cầu báo giá</span>
+                    </a>
+
+                    <!-- Language Selector -->
+                    <div class="lang-box">
+                        <a href="/" title="Vietnamese"><img src="/views/client/Content/images/vietnam.png" alt="VN"></a>
+                        <a href="#" title="English"><img src="/views/client/Content/images/english.png" alt="EN"></a>
+                        <a href="#" title="Japanese"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1200px-Flag_of_Japan.svg.png" alt="JP"></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Search Icon (optional) or just the drawer -->
+        </div>
+    </div>
+</header>
+
+<!-- Navigation Bar: Green background - OUTSIDE header for sticky to work -->
+<nav class="navigation-bar hidden-xs">
+    <div class="container-custom nav-wrap">
+        <!-- Vertical Category Menu -->
+        <div class="category-menu-wrapper">
+            <div class="cat-toggle">
+                <i class="fa fa-bars"></i> DANH MỤC SẢN PHẨM
+            </div>
+            <div class="cat-dropdown" id="menu-main">
+                <ul><!-- Content loaded by JS --></ul>
+            </div>
+        </div>
+
+        <!-- Main Horizontal Menu -->
+        <div class="main-nav-links">
+            <ul class="nav-list">
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/gioi-thieu">Giới thiệu</a></li>
+                <li class="has-submenu">
+                    <a href="/thuong-hieu">Thương hiệu <i class="fa fa-angle-down"></i></a>
+                    <ul id="brands-post-main" class="submenu-list"><!-- Brands load dynamically --></ul>
+                </li>
+                <li><a href="/san-pham/tat-ca-san-pham">Sản phẩm</a></li>
+                <li><a href="/tin-tuc">Tin tức</a></li>
+                <li><a href="/lien-he">Liên hệ</a></li>
+            </ul>
+        </div>
+
+        <!-- Integrated Search Bar -->
+        <div class="nav-search">
+            <div class="search-box-wrapper">
+                <input type="text" id="keysearch" placeholder="Tìm kiếm sản phẩm..." autocomplete="off">
+                <button id="searchhref"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile Header Search (Visible only on mobile) -->
+<div class="mobile-search-strip visible-xs">
+    <div class="container-custom">
+        <div class="search-box-wrapper">
+            <input type="text" id="keysearch-mobile" placeholder="Tìm kiếm..." autocomplete="off">
+            <button id="searchhref-mobile"><i class="fa fa-search"></i></button>
+        </div>
+    </div>
+</div>
+
+<!-- Mobile Sidebar (Drawer) - Keep the same logic but update classes for design consistency -->
+<div id="as-one-drawer" class="mobile-drawer-as-one">
+    <div class="drawer-header-as-one">
+        <div class="drawer-logo-wrapper">
+            <img src="/views/client/Content/Uploads/images/logo.png" alt="Logo" width="120">
+        </div>
+        <span id="close-mobile-menu" class="close-drawer-btn">&times;</span>
+    </div>
+    <div class="drawer-body-as-one">
+        <div class="drawer-section">
+            <p class="section-title">Menu Chính</p>
+            <ul class="main-nav-mobile">
+                <li><a href="/"><i class="fa fa-home"></i> Trang chủ</a></li>
+                <li><a href="/gioi-thieu"><i class="fa fa-info-circle"></i> Giới thiệu</a></li>
+                <li><a href="/thuong-hieu"><i class="fa fa-tag"></i> Thương hiệu</a></li>
+                <li><a href="/san-pham/tat-ca-san-pham"><i class="fa fa-cube"></i> Sản phẩm</a></li>
+                <li><a href="/tin-tuc"><i class="fa fa-newspaper-o"></i> Tin tức</a></li>
+                <li><a href="/lien-he"><i class="fa fa-phone"></i> Liên hệ</a></li>
+            </ul>
+        </div>
+        <div class="drawer-section">
+            <p class="section-title">Danh mục sản phẩm</p>
+            <ul id="mobile-menu-cats-main" class="cat-nav-mobile"></ul>
+        </div>
+        <div class="drawer-section drawer-contact-info">
+            <p class="section-title">Liên hệ</p>
+            <p><i class="fa fa-envelope"></i> sales@daiduongautomation.com</p>
+            <p><i class="fa fa-phone"></i> 0888 40 62 68</p>
+        </div>
+    </div>
+</div>
+<div id="drawer-overlay-as-one"></div>
+
+<script>
+    (async () => {
+        const menu = document.querySelector("#menu-main ul");
+        const mobileMenuCats = document.querySelector("#mobile-menu-cats-main");
+        
+        try {
+            const res = await fetch(`/danh-muc/all`);
+            const categories = await res.json();
+            
+            if (categories && categories.length > 0) {
+                for (let category of categories) {
+                    if(menu) {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <a href="/danh-muc/${category.slug}">
+                                <img src="/views/client/Content/Uploads/images/category_icon01.png" alt="${category.name}" width="18" />
+                                <span>${category.name}</span>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                            <ul class="cat-submenu" id="submenu-${category._id}"></ul>
+                        `;
+                        menu.appendChild(listItem);
+
+                        fetch(`/danh-muc-con/get/${category._id}`)
+                            .then(response => response.json())
+                            .then(subcategories => {
+                                const submenu = document.querySelector(`#submenu-${category._id}`);
+                                if (submenu && subcategories.length > 0) {
+                                    subcategories.forEach(subcategory => {
+                                        const subItem = document.createElement('li');
+                                        subItem.innerHTML = `<a href="/danh-muc-con/${subcategory.slug}">${subcategory.name}</a>`;
+                                        submenu.appendChild(subItem);
+                                    });
+                                }
+                            });
+                    }
+
+                    if(mobileMenuCats) {
+                        const mListItem = document.createElement('li');
+                        mListItem.innerHTML = `
+                            <a href="/danh-muc/${category.slug}">
+                                ${category.name} <i class="fa fa-angle-right"></i>
+                            </a>
+                        `;
+                        mobileMenuCats.appendChild(mListItem);
+                    }
+                }
+            }
+        } catch (e) { console.error('Categories error:', e); }
+
+        const brandsPost = document.querySelector("#brands-post-main");
+        try {
+            const resBrands = await fetch(`/thuong-hieu/all`);
+            const dataBrands = await resBrands.json();
+            if(dataBrands && brandsPost){
+                dataBrands.forEach(brand => {
+                    brandsPost.innerHTML += `
+                        <li>
+                            <a href="/thuong-hieu/${brand.slug}">
+                                ${brand.name}
+                            </a>
+                        </li>
+                    `;
+                });
+            }
+        } catch (e) { console.error('Brands error:', e); }
+
+        // Mobile Drawer Logic
+        const drOpen = document.getElementById('open-mobile-menu');
+        const drClose = document.getElementById('close-mobile-menu');
+        const drEl = document.getElementById('as-one-drawer');
+        const drOverlay = document.getElementById('drawer-overlay-as-one');
+        
+        if(drOpen) drOpen.onclick = () => { drEl.classList.add('active'); drOverlay.classList.add('active'); };
+        if(drClose) drClose.onclick = () => { drEl.classList.remove('active'); drOverlay.classList.remove('active'); };
+        if(drOverlay) drOverlay.onclick = () => { drEl.classList.remove('active'); drOverlay.classList.remove('active'); };
+    })();
+</script>

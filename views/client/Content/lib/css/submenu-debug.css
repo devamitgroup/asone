@@ -1,0 +1,46 @@
+/* DEBUG: Force show submenu to test */
+.cat-dropdown > ul > li:hover > ul.cat-submenu,
+.cat-dropdown ul li:hover ul.cat-submenu,
+ul.cat-submenu:hover {
+    display: block !important;
+}
+
+/* Ensure parent li has relative positioning */
+#menu-main ul > li {
+    position: relative !important;
+}
+
+/* Submenu styling - SIMPLIFIED */
+ul.cat-submenu {
+    position: absolute !important;
+    top: 0 !important;
+    left: 100% !important;
+    background: white !important;
+    min-width: 250px !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3) !important;
+    list-style: none !important;
+    padding: 10px 0 !important;
+    margin: 0 !important;
+    display: none !important;
+    z-index: 9999 !important;
+    border: 2px solid #108844 !important;
+}
+
+ul.cat-submenu li {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+ul.cat-submenu li a {
+    display: block !important;
+    padding: 10px 20px !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+}
+
+ul.cat-submenu li a:hover {
+    background: #108844 !important;
+    color: white !important;
+}

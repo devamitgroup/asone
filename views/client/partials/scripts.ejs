@@ -1,0 +1,39 @@
+<input type="hidden" id="currentLanguage" value="vi" />
+<script src="/views/client/Content/lib/js/jquery-1.10.2.min.js"></script>
+<script src="/views/client/Content/lib/owlcarousel2/owl.carousel.min.js"></script>
+<script src="/views/client/Content/lib/js/autosearch.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var heightBody = $("body").outerHeight();
+        var heightWindow = $(window).outerHeight() + 400;
+        if (heightBody > heightWindow) {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {
+                    $(".head").addClass("fixed");
+                } else $(".head").removeClass("fixed");
+            });
+        }
+        $(".user-support").click(function () {
+            $(".social-ring-main").toggle();
+        });
+        $(".pclose").click(function () {
+            $("#fade").hide();
+            $("#popup").hide();
+        });
+        $("a.btn-support").click(function (e) {
+            e.stopPropagation();
+            $(".support-content").slideToggle();
+        });
+        $(".support-content").click(function (e) {
+            e.stopPropagation();
+        });
+        $(document).click(function () {
+            $(".support-content").slideUp();
+        });
+        if($("#currentId").val()){
+            $(".cate_" + $("#currentId").val()).addClass("active");
+            $(".cate_" + $("#currentId").val()).parent().parent().addClass("active");
+            $(".cate_" + $("#currentId").val()).parent().parent().parent().parent().addClass("active");
+        }
+    });
+</script>

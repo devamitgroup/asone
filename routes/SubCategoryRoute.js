@@ -7,7 +7,7 @@ router.post("/add", subcategoryController.createSubcategory);
 
 router.get("/:slug", subcategoryController.getSubcategoryBySlug, (req, res) => {
   res.render("client/chi-tiet-danh-muc-con/page/index.ejs", {
-    categoryId: res.locals.subcategory._id,
+    subcategoryId: res.locals.subcategory._id,
     title: res.locals.subcategory.name,
     BASE_URL: process.env.BASE_URL,
     faviconPath: process.env.FAVICON_PATH_CLIENT,

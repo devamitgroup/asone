@@ -1,23 +1,27 @@
-﻿// Chờ cho DOM được load hoàn toàn
-document.addEventListener("DOMContentLoaded", function () {
-  // Lấy phần tử input và nút tìm kiếm
-  const inputKeyword = document.getElementById("keysearch");
-  const searchButton = document.getElementById("searchhref");
+﻿document.addEventListener("DOMContentLoaded", function () {
+    function setupSearch(inputId, buttonId) {
+        const input = document.getElementById(inputId);
+        const button = document.getElementById(buttonId);
 
-  // Thêm sự kiện cho nút tìm kiếm
-  searchButton.addEventListener("click", function (event) {
-    // Ngăn chặn hành vi mặc định của nút tìm kiếm (chuyển hướng)
-    event.preventDefault();
+        if (input && button) {
+            button.addEventListener("click", function (event) {
+                event.preventDefault();
+                const value = input.value.trim();
+                if (value !== "") {
+                    window.location.href = `/san-pham/ket-qua-tim-kiem?keyword=${encodeURIComponent(value)}`;
+                }
+            });
 
-    // Lấy giá trị từ input
-    const keywordValue = inputKeyword.value.trim();
-
-    // Nếu giá trị không rỗng
-    if (keywordValue !== "") {
-      // Chuyển hướng đến trang kết quả tìm kiếm với tham số keyword
-      window.location.href = `/san-pham/ket-qua-tim-kiem?keyword=${encodeURIComponent(
-        keywordValue
-      )}`;
+            input.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                    button.click();
+                }
+            });
+        }
     }
-  });
+
+    // Setup for desktop and mobile search boxes
+    setupSearch("keysearch", "searchhref");
+    setupSearch("keysearch-mobile", "searchhref-mobile");
 });

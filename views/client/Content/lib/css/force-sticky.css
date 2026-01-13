@@ -1,0 +1,39 @@
+/* FORCE STICKY NAVIGATION - MAXIMUM OVERRIDE */
+
+/* Desktop: Only navigation bar sticky */
+@media (min-width: 768px) {
+    nav.navigation-bar.hidden-xs,
+    .navigation-bar.hidden-xs,
+    nav.navigation-bar,
+    .navigation-bar {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 9999 !important;
+        background: #108844 !important;
+        display: block !important;
+    }
+}
+
+/* Mobile: Entire header sticky */
+@media (max-width: 767px) {
+    header.site-header,
+    .site-header {
+        position: -webkit-sticky !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 9999 !important;
+        background: #fff !important;
+    }
+}
+
+/* Ensure parent doesn't have overflow hidden */
+body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+.site-header,
+header {
+    overflow: visible !important;
+}

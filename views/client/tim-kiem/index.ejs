@@ -1,385 +1,66 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    
-                                <title><%= title %></title>
-                            
-                            
-
-    <link href="/views/client/Content/Uploads/images/logo.png" rel="shortcut icon" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="/views/client/Content/lib/bootstrap3/grid12.min.css" rel="stylesheet" />
-    
-    
-    
-    <link href="/views/client/Content/lib/owlcarousel2/assets/owl.carousel.min.css" rel="stylesheet" />
-    
-    <link href="/views/client/Content/lib/css/template.min.css" rel="stylesheet" />
-    <link href="/views/client/Content/lib/css/template-responsive.min.css" rel="stylesheet" />
-    <style>
-        .no-look{
-            text-align: center;
-            padding: 20px 0;
-            color: #1f7055;
-            text-transform: uppercase;
-        }
-        /* CSS cho hiệu ứng loading */
-/* CSS cho hiệu ứng loading */
-.loading {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.8); /* Màu nền xám nhạt với độ trong suốt */
-    z-index: 9999;
-}
-
-.loading-spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left-color: #1f7055;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-}
-
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-    </style>
-
+<%- include('../partials/head', { title: title }) %>
 <body>
-   
-    
-    <div class="head">
-        <div class="banner">
-            <div class="w-ct clearfix">
-                <div class="hidden-lg hidden-md hidden-sm col-xs-2 mmenu">
-                    <a rel="nofollow" href="#menu"></a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-8">
-                    <a href="/" class="logo">
-                        <img alt="Logo" src="/views/client/Content/Uploads/images/logo.png" />
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 pull-right">
-                    <div class="hidden-xs">
-                        <div class="phone-email">
-                        
-                            <a
-                                href="mailto:sales@daiduongautomation.com ">
-                                <img src="https://lotusarchvn.com/images/icon3.svg" alt="" width="25px">
-                                <span class="hidden-xs">Yêu cầu báo giá</span>
-                            </a>
-                        </div>
-                        <div class="language">
-                            <a href="/" rel="nofollow" class="pull-right">
-                                <img
-                                    alt="Vietnamese"
-                                    src="/views/client/Content/images/vietnam.png"
-                                    width="30"
-                                    height="22" />
-                            </a>
-                            <a class="pull-right" rel="nofollow" href="#">
-                                <img width="30" height="22" src="/views/client/Content/images/english.png"
-                            /></a>
-                            <a class="pull-right" rel="nofollow" href="#">
-                                <img width="30" height="22" src="https://tulieuvankien.dangcongsan.vn/Uploads/2018/7/5/3/Quoc%20ky%20NhatBan.jpg"
-                            /></a>
-                        </div>
-                    </div>
+    <%- include('../partials/header') %>
 
-                    <div class="box-search">
-                        <input
-                            class="txtkeysearch"
-                            id="keysearch"
-                            autocomplete="off"
-                            name="keyword"
-                            maxlength="80"
-                            placeholder="Nhập nội dung tìm kiếm..."
-                            type="text" />
-                        <a class="btnsearch" id="searchhref" 	></a>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="b-m hidden-xs">
-            <div class="w-ct clearfix">
-                <div class="col-md-3 col-sm-3 hidden-xs">
-                    <div class="bm-l">
-                        <div class="ctitle">Danh mục sản phẩm</div>
-                        <div class="m-l" id='menu'>
-                        
-                            <ul>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    (async () => {
-const menu = document.querySelector("#menu ul");
-const res = await fetch(`/danh-muc/all`);
-const categories = await res.json();
-console.log(categories);
-if (categories) {
-for (let category of categories) {
-  const listItem = document.createElement('li');
-  listItem.innerHTML = `
-    <a href="/danh-muc/${category.slug}">
-      <img src="/views/client/Content/Uploads/images/category_icon01.png" alt="${category.name}" />${category.name}
-    </a>
-    <ul id="submenu-${category._id}"></ul>
-  `;
-  menu.appendChild(listItem);
-
-  const submenu = document.querySelector(`#submenu-${category._id}`);
-  fetch(`/danh-muc-con/get/${category._id}`)
-    .then(response => response.json())
-    .then(subcategories => {
-      if (subcategories.length > 0) {
-        subcategories.forEach(subcategory => {
-          const subItem = document.createElement('li');
-          subItem.innerHTML = `<a href="/danh-muc-con/${subcategory.slug}">${subcategory.name}</a>`;
-          submenu.appendChild(subItem);
-        });
-      }
-    })
-    .catch(error => {
-      console.error('Error loading subcategories:', error);
-      
-    });
-}
-}
-})();
-
-
-        
-                </script>
-                
-                <div class="col-md-9 col-md-9 hidden-xs">
-                    <div class="m-t">
-                        <ul>
-                            <li data-id="1">
-                                <a title="Giới thiệu" target="_parent" href="/gioi-thieu">
-                                    Giới thiệu
-                                </a>
-                            </li>
-                            <li data-id="69">
-                                <a
-                                    title="Thương hiệu"
-                                    target="_parent"
-                                    href="/thuong-hieu">
-                                    Thương hiệu <i class="fa fa-chevron-down"></i>
-                                </a>
-                                <ul id='brands-post'>
-                                
-                            
-                                </ul>
-                            </li>
-                            <li data-id="3">
-                                <a title="Sản phẩm" target="_parent" href="/san-pham/tat-ca-san-pham">
-                                    Sản phẩm
-                                </a>
-                            </li>
-                            <li data-id="5">
-                                <a
-                                    title="Tin tức"
-                                    target="_parent"
-                                    href="/tin-tuc">
-                                    Tin tức
-                                </a>
-                            </li>
-                            <li data-id="7">
-                                <a title="Li&#234;n hệ" target="_parent" href="/lien-he">
-                                    Li&#234;n hệ
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <script>
-                    (async () =>{
-                        const brandsPost = document.querySelector("#brands-post")
-                        const res = await fetch(`/thuong-hieu/all`)
-                        const data = await res.json()
-                        console.log(data);
-                        if(data){
-                            data.map((value , key) =>{
-                                brandsPost.innerHTML += `
-
-                                <li data-id="71">
-                                        <a title="${value.name}" target="_parent" href="/thuong-hieu/${value.slug}">
-                                            ${value.name} <i class="fa fa-chevron-right"></i>
-                                        </a>
-                                    </li>
-                                `
-                            })
-                        }
-                    })()
-                </script>
-            </div>
+    <div class="navi">
+        <div class="w-ct padding15">
+            <a href="/">Trang chủ</a><span>/</span>
+            <span>Kết quả tìm kiếm</span>
         </div>
     </div>
-    <style>
-        .b-m .m-l {
-            display: none;
-        }
 
-        .head.fixed .m-l {
-            display: none;
-        }
-    </style>
-                   
-
-
-
-<div class="w-ct clearfix lstproduct">
-    
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="loading" id="loading">
-            <div class="loading-spinner"></div>
-        </div>
-            <div id="listproduct" class="row">
-                
-                  
-            </div>
-          
-    </div>
-</div>
-                         
-<div class="footer-main">
-    <div class="w-ct clearfix">
-        <div class='f-foot'>
-            <div>
-                <h5 class='fl-foot'>Follow us</h5>
-            </div>
-            <div>
-                <img src="./Content/Uploads/images/ico_youtube01.png" width="50px" alt="">
-                <img src="./Content/Uploads/images/ico_facebook01.png" width="50px" alt="">
-            </div>
-        </div>
-        <div class="line-foot">
-            <hr color="#fff"/>
-
-        </div>
-        <div class="list-detail-foot clearfix">
-            <div class="col-md-3">
-                <h1>DAI DUONG</h1>
-                <p class="vn-foot">VietNam</p>
-            </div>
-            <div class="col-md-3">
-                <p class="title-item-foot">Công ty</p>
-                <ul class="list-item-foot">
-                    <li>Về chúng tôi</li>
-                    <li>Dịch vụ</li>
-                    <li>Global Home</li>
-                    <li>Tuyển dụng</li>
-                    <li>Cam kết bảo vệ quyền riêng</li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <p class="title-item-foot">Sản phẩm</p>
-                <ul class="list-item-foot">
-                    <li>Sản phẩm theo danh mục</li>
-                    <li>Nhà cung cấp</li>
-                    <li>Các mặt hàng nổi bật</li>
-                    <li>Video sản phẩm</li>
-                    
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <p class="title-item-foot">Tin tức</p>
-                <ul class="list-item-foot">
-                    <li>Thông tin công ty</li>
-                    <li>Thông tin sản phẩm</li>
-                    <li>Triển lãm/Hội thảo</li>
-                    
-                </ul>
-            </div>
+    <div class="w-ct clearfix lstproduct padding15">
+        <h1 class="htitle1"><span>Kết quả tìm kiếm</span></h1>
+        <div id="listproduct" class="row">
+            <div class="col-xs-12 text-center" id="search-status">Đang tìm kiếm...</div>
         </div>
     </div>
-</div>
-  
-    <div class="social-ring">
-        <div class="social-ring-main" style="display:block;">
-            <div class="social-ring-content">
-                <a target="_blank" rel="nofollow" href="" class="mes">
-                    <img alt="Fanpage" width="40" height="40" src="/views/client/Content/Uploads/images/mess-i.png">
-                    <div class="animated alo-circle"></div>
-                    <div class="animated alo-circle-fill"></div>
-                    <span>Message Facebook</span>
-                </a>
-                <a target="_blank" rel="nofollow" href="https://zalo.me/0888406268" class="zalo">
-                    <img alt="Zalo" width="40" height="40" src="/views/client/Content/Uploads/images/zalo-i.png">
-                    <div class="animated alo-circle"></div>
-                    <div class="animated alo-circle-fill"></div>
-                    <span>Zalo: 0888.40.62.68</span>
-                </a>
-                <a target="_blank" rel="nofollow" href="tel:0888406268" class="call-icon" rel="nofollow">
-                    <img alt="Hotline" width="40" height="40" src="/views/client/Content/Uploads/images/phone-i.png">
-                    <div class="animated alo-circle"></div>
-                    <div class="animated alo-circle-fill"></div>
-                    <span>Hotline: 0888.40.62.68</span>
-                </a>
-                <a target="_blank" rel="nofollow" href="tel:0968080891" class="call-icon" rel="nofollow">
-                    <img alt="Hotline" width="40" height="40" src="/views/client/Content/Uploads/images/phone-i.png">
-                    <div class="animated alo-circle"></div>
-                    <div class="animated alo-circle-fill"></div>
-                    <span>Hotline: 0888.40.62.68</span>
-                </a>
-            </div>
-        </div>
-     
-        
-    </div>
-    <input type="hidden" id="currentLanguage" value="vi" />
-    <script src="/views/client/Content/lib/js/jquery-1.10.2.min.js"></script>
-    
-    <script src="/views/client/Content/lib/owlcarousel2/owl.carousel.min.js"></script>
-  
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/views/client/Content/lib/js/autosearch.js"></script>
-    
+
+    <%- include('../partials/footer') %>
+    <%- include('../partials/social_ring') %>
+    <%- include('../partials/scripts') %>
+
     <script>
         (async () => {
-            let param = new URLSearchParams(window.location.search);
-            let keyword = param.get('keyword');
-            const response = await fetch('/san-pham/tim-kiem?keyword=' + keyword);
-            const data = await response.json();
-            console.log(data);
+            const param = new URLSearchParams(window.location.search);
+            const keyword = param.get('keyword');
             const listproduct = document.getElementById('listproduct');
-            if(data){
-                data.map((value) => {
-                    listproduct.innerHTML += `
-                    <div class="col-md-2 col-sm-2 col-xs-6">
-                                    <div class="p-i">
-                                        <a class="p-img" href="/san-pham/${value.slug}" title="${value.name}">
-                                            <img src="/${value.images[0]}" class="lazy" title="${value.name}" alt="${value.name}">
-                                        </a>
-                                        <h3><a href="/san-pham/${value.slug}">${value.name}</a></h3>
-                                        <p class="price-box">
-                                            <span class="price-news">Giá: Liên hệ</span>
-                                        </p>
-                                    </div>
+            const status = document.getElementById('search-status');
+
+            if (!keyword) {
+                status.innerText = 'Vui lòng nhập từ khóa tìm kiếm.';
+                return;
+            }
+
+            try {
+                const response = await fetch('/san-pham/tim-kiem?keyword=' + encodeURIComponent(keyword));
+                const data = await response.json();
+                
+                if (data && data.length > 0) {
+                    listproduct.innerHTML = '';
+                    data.forEach(value => {
+                        listproduct.innerHTML += `
+                            <div class="col-md-3 col-sm-4 col-xs-6">
+                                <div class="p-i">
+                                    <a class="p-img" href="/san-pham/${value.slug}" title="${value.name}">
+                                        <img src="/${value.images[0]}" alt="${value.name}">
+                                    </a>
+                                    <h3><a href="/san-pham/${value.slug}">${value.name}</a></h3>
+                                    <p class="price-box"><span class="price-news">Giá: Liên hệ</span></p>
                                 </div>
-                    `
-                })
+                            </div>
+                        `;
+                    });
+                } else {
+                    status.innerText = 'Không tìm thấy sản phẩm nào matching với "' + keyword + '".';
+                }
+            } catch (e) {
+                console.error('Search error:', e);
+                status.innerText = 'Lỗi khi thực hiện tìm kiếm.';
             }
         })();
     </script>
-   
 </body>
 </html>

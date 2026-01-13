@@ -1,471 +1,128 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    
-    <title><%= title %></title>
-    <link rel="shortcut icon" href="<%= faviconPath %>" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="/views/client/Content/lib/bootstrap3/grid12.min.css" rel="stylesheet" />
-    
-    
-    
-    <link href="/views/client/Content/lib/owlcarousel2/assets/owl.carousel.min.css" rel="stylesheet" />
-    
-    <link href="/views/client/Content/lib/css/template.min.css" rel="stylesheet" />
-    <link href="/views/client/Content/lib/css/template-responsive.min.css" rel="stylesheet" />
-    <style>
-        .overlay {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #fff; /* Màu nền với độ mờ */
-            z-index: 1000; /* Đảm bảo hiển thị trên tất cả các phần tử khác */
-            display: none; /* Ẩn ban đầu */
-        }
-
-        .loader {
-            border: 16px solid #f3f3f3; /* Màu nền cho biểu tượng loading */
-            border-top: 16px solid #3498db; /* Màu cho phần đỉnh của biểu tượng loading */
-            border-radius: 50%; /* Để biểu tượng tròn */
-            width: 120px;
-            height: 120px;
-            animation: spin 2s linear infinite; /* Tạo hiệu ứng quay xoay */
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-top: -60px; /* Chỉnh sửa để căn giữa theo chiều dọc */
-            margin-left: -60px; /* Chỉnh sửa để căn giữa theo chiều ngang */
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
+<%- include('../../partials/head', { title: title }) %>
 <body>
-    <div id="overlay" class="overlay">
-        <div class="loader"></div>
-    </div>
-    <div class="head">
-        <div class="banner">
-            <div class="w-ct clearfix">
-                <div class="hidden-lg hidden-md hidden-sm col-xs-2 mmenu">
-                    <a rel="nofollow" href="#menu"></a>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-8">
-                    <a href="/" class="logo">
-                        <img alt="Logo" src="/views/client/Content/Uploads/images/logo.png" />
-                    </a>
-                </div>
-                <div class="col-md-3 col-sm-6 col-xs-12 pull-right">
-                    <div class="hidden-xs">
-                        <div class="phone-email">
-                        
-                            <a
-                                href="mailto:sales@daiduongautomation.com ">
-                                <img src="https://lotusarchvn.com/images/icon3.svg" alt="" width="25px">
-                                <span class="hidden-xs">Yêu cầu báo giá</span>
-                            </a>
-                        </div>
-                        <div class="language">
-                            <a href="/" rel="nofollow" class="pull-right">
-                                <img
-                                    alt="Vietnamese"
-                                    src="/views/client/Content/images/vietnam.png"
-                                    width="30"
-                                    height="22" />
-                            </a>
-                            <a class="pull-right" rel="nofollow" href="#">
-                                <img width="30" height="22" src="/views/client/Content/images/english.png"
-                            /></a>
-                            <a class="pull-right" rel="nofollow" href="#">
-                                <img width="30" height="22" src="https://tulieuvankien.dangcongsan.vn/Uploads/2018/7/5/3/Quoc%20ky%20NhatBan.jpg"
-                            /></a>
-                        </div>
-                    </div>
+    <%- include('../../partials/header') %>
 
-                    <div class="box-search">
-                        <input
-                            class="txtkeysearch"
-                            id="keysearch"
-                            autocomplete="off"
-                            name="keyword"
-                            maxlength="80"
-                            placeholder="Nhập nội dung tìm kiếm..."
-                            type="text" />
-                        <a class="btnsearch" id="searchhref" 	></a>
-                        
+    <div class="navi">
+        <div class="w-ct padding15">
+            <a href="/">Trang chủ</a><span>/</span>
+            <span>Tất cả sản phẩm</span>
+        </div>
+    </div>
+
+    <div class="w-ct padding15 clearfix">
+        <div class="row">
+            <div class="col-md-3 col-sm-4 hidden-xs">
+                <div class="sidebar-filter">
+                    <div class="ltitle1">Hãng sản xuất</div>
+                    <div id="manufacturer-filters" class="filter-list">
+                        <!-- Dynamic manufacturers -->
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="b-m hidden-xs">
-            <div class="w-ct clearfix">
-                <div class="col-md-3 col-sm-3 hidden-xs">
-                    <div class="bm-l">
-                        <div class="ctitle">Danh mục sản phẩm</div>
-                        <div class="m-l" id='menu'>
-                        
-                            <ul>
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <script>
-                    (async () => {
-const menu = document.querySelector("#menu ul");
-const res = await fetch(`/danh-muc/all`);
-const categories = await res.json();
-console.log(categories);
-if (categories) {
-for (let category of categories) {
-  const listItem = document.createElement('li');
-  listItem.innerHTML = `
-    <a href="/danh-muc/${category.slug}">
-      <img src="/views/client/Content/Uploads/images/category_icon01.png" alt="${category.name}" />${category.name}
-    </a>
-    <ul id="submenu-${category._id}"></ul>
-  `;
-  menu.appendChild(listItem);
-
-  const submenu = document.querySelector(`#submenu-${category._id}`);
-  fetch(`/danh-muc-con/get/${category._id}`)
-    .then(response => response.json())
-    .then(subcategories => {
-      if (subcategories.length > 0) {
-        subcategories.forEach(subcategory => {
-          const subItem = document.createElement('li');
-          subItem.innerHTML = `<a href="/danh-muc-con/${subcategory.slug}">${subcategory.name}</a>`;
-          submenu.appendChild(subItem);
-        });
-      }
-    })
-    .catch(error => {
-      console.error('Error loading subcategories:', error);
-      
-    });
-}
-}
-})();
-
-
-        
-                </script>
-                
-                <div class="col-md-9 col-md-9 hidden-xs">
-                    <div class="m-t">
-                        <ul>
-                            <li data-id="1">
-                                <a title="Giới thiệu" target="_parent" href="/gioi-thieu">
-                                    Giới thiệu
-                                </a>
-                            </li>
-                            <li data-id="69">
-                                <a
-                                    title="Thương hiệu"
-                                    target="_parent"
-                                    href="/thuong-hieu">
-                                    Thương hiệu <i class="fa fa-chevron-down"></i>
-                                </a>
-                                <ul id='brands-post'>
-                                
-                            
-                                </ul>
-                            </li>
-                            <li data-id="3">
-                                <a title="Sản phẩm" target="_parent" href="/san-pham/tat-ca-san-pham">
-                                    Sản phẩm
-                                </a>
-                            </li>
-                            <li data-id="5">
-                                <a
-                                    title="Tin tức"
-                                    target="_parent"
-                                    href="/tin-tuc">
-                                    Tin tức
-                                </a>
-                            </li>
-                            <li data-id="7">
-                                <a title="Li&#234;n hệ" target="_parent" href="/lien-he">
-                                    Li&#234;n hệ
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <h1 class="htitle2">Sản phẩm</h1>
+                <div class="row" id="product-list">
+                    <!-- Products will be loaded here via JS -->
+                    <div class="col-xs-12 loading-msg text-center">Đang tải sản phẩm...</div>
                 </div>
 
-                <script>
-                    (async () =>{
-                        const brandsPost = document.querySelector("#brands-post")
-                        const res = await fetch(`/thuong-hieu/all`)
-                        const data = await res.json()
-                        console.log(data);
-                        if(data){
-                            data.map((value , key) =>{
-                                brandsPost.innerHTML += `
-
-                                <li data-id="71">
-                                        <a title="${value.name}" target="_parent" href="/thuong-hieu/${value.slug}">
-                                            ${value.name} <i class="fa fa-chevron-right"></i>
-                                        </a>
-                                    </li>
-                                `
-                            })
-                        }
-                    })()
-                </script>
+                <div class="pagination-container text-center">
+                    <ul class="pagination-modern" id="pagination"></ul>
+                </div>
             </div>
         </div>
     </div>
 
-	<style>
-        .b-m .m-l {
-            display: none;
-        }
+    <%- include('../../partials/footer') %>
+    <%- include('../../partials/social_ring') %>
+    <%- include('../../partials/scripts') %>
 
-        .head.fixed .m-l {
-            display: none;
-        }
-    </style>
-
-<div class="w-ct clearfix lstproduct">
-    <div class="col-md-3 col-sm-3 hidden-xs">
-        
-            <div class="ltitle1">Lọc sản phẩm</div>
-            <div class="attributelist">
-                <p>Thương hiệu</p><ul class='groupattr1'>
-                    
-                </ul>
-            </div>
-            <script>
-                (async () => {
-                    const groupattr1 = document.querySelector('.groupattr1');
-                    const params = new URLSearchParams(window.location.search);
-                    const manufacturerIds = params.getAll('manufacturerId'); // Lấy tất cả manufacturerId từ query params nếu có
-                
-                    // Fetch the list of manufacturers
-                    const res = await fetch('/hang-san-xuat/');
-                    const brandsData = await res.json();
-                    console.log(brandsData);
-                
-                    if (brandsData) {
-                        brandsData.forEach((value, key) => {
-                            // Check if the manufacturerId is in the URL params to mark the checkbox as checked
-                            const isChecked = manufacturerIds.includes(value._id) ? 'checked' : '';
-                            groupattr1.innerHTML += `
-                                <li>
-                                    <label>
-                                        <input class='chkattribute' type='checkbox' value='${value._id}' ${isChecked} />
-                                        ${value.name}
-                                        <span></span>
-                                    </label>
-                                </li>
-                            `;
-                        });
-                
-                        // Add event listener to checkboxes
-                        document.querySelectorAll('.chkattribute').forEach(checkbox => {
-    checkbox.addEventListener('change', (event) => {
-        const checkedManufacturerIds = Array.from(document.querySelectorAll('.chkattribute:checked'))
-            .map(cb => cb.value);
-
-        const newParams = new URLSearchParams(window.location.search);
-        newParams.delete('manufacturerId');
-        checkedManufacturerIds.forEach(id => newParams.append('manufacturerId', id));
-
-        const newUrl = `${window.location.pathname}?${newParams.toString()}`;
-        window.location.href = newUrl; // Load lại trang với URL mới
-    });
-});
-
-                    }
-                })();
-           
-                </script>
-                
-    </div>
-    <div class="col-md-9 col-sm-9 col-xs-12">
-        <div id="listproduct" class="row">
-           
-        </div>
-        <div id="pagination" class="pagination"></div>
-    </div>
-    
-</div>
-                         
-<div class="footer-main">
-    <div class="w-ct clearfix">
-        <div class='f-foot'>
-            <div>
-                <h5 class='fl-foot'>Follow us</h5>
-            </div>
-            <div>
-                <img src="./Content/Uploads/images/ico_youtube01.png" width="50px" alt="">
-                <img src="./Content/Uploads/images/ico_facebook01.png" width="50px" alt="">
-            </div>
-        </div>
-        <div class="line-foot">
-            <hr color="#fff"/>
-
-        </div>
-        <div class="list-detail-foot clearfix">
-            <div class="col-md-3">
-                <h1>DAI DUONG</h1>
-                <p class="vn-foot">VietNam</p>
-            </div>
-            <div class="col-md-3">
-                <p class="title-item-foot">Công ty</p>
-                <ul class="list-item-foot">
-                    <li>Về chúng tôi</li>
-                    <li>Dịch vụ</li>
-                    <li>Global Home</li>
-                    <li>Tuyển dụng</li>
-                    <li>Cam kết bảo vệ quyền riêng</li>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <p class="title-item-foot">Sản phẩm</p>
-                <ul class="list-item-foot">
-                    <li>Sản phẩm theo danh mục</li>
-                    <li>Nhà cung cấp</li>
-                    <li>Các mặt hàng nổi bật</li>
-                    <li>Video sản phẩm</li>
-                    
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <p class="title-item-foot">Tin tức</p>
-                <ul class="list-item-foot">
-                    <li>Thông tin công ty</li>
-                    <li>Thông tin sản phẩm</li>
-                    <li>Triển lãm/Hội thảo</li>
-                    
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-  
-    <div class="social-ring">
-        <div class="social-ring-main" style="display:block;">
-            <div class="social-ring-content">
-                <a target="_blank" rel="nofollow" href="" class="mes">
-                    <img alt="Fanpage" width="40" height="40" src="/views/client/Content/Uploads/images/mess-i.png">
-                    <div class="animated alo-circle"></div>
-                    <div class="animated alo-circle-fill"></div>
-                    <span>Message Facebook</span>
-                </a>
-                <a target="_blank" rel="nofollow" href="https://zalo.me/0888406268" class="zalo">
-                    <img alt="Zalo" width="40" height="40" src="/views/client/Content/Uploads/images/zalo-i.png">
-                    <div class="animated alo-circle"></div>
-                    <div class="animated alo-circle-fill"></div>
-                    <span>Zalo: 0888.40.62.68</span>
-                </a>
-                <a target="_blank" rel="nofollow" href="tel:0888406268" class="call-icon" rel="nofollow">
-                    <img alt="Hotline" width="40" height="40" src="/views/client/Content/Uploads/images/phone-i.png">
-                    <div class="animated alo-circle"></div>
-                    <div class="animated alo-circle-fill"></div>
-                    <span>Hotline: 0888.40.62.68</span>
-                </a>
-                <a target="_blank" rel="nofollow" href="tel:0968080891" class="call-icon" rel="nofollow">
-                    <img alt="Hotline" width="40" height="40" src="/views/client/Content/Uploads/images/phone-i.png">
-                    <div class="animated alo-circle"></div>
-                    <div class="animated alo-circle-fill"></div>
-                    <span>Hotline: 0888.40.62.68</span>
-                </a>
-            </div>
-        </div>
-        
-    </div>
-    <input type="hidden" id="currentLanguage" value="vi" />
-    <script src="/views/client/Content/lib/js/jquery-1.10.2.min.js"></script>
-    
-    <script src="/views/client/Content/lib/owlcarousel2/owl.carousel.min.js"></script>
-    <div class="col-md-9 col-sm-9 col-xs-12">
-        <div id="listproduct" class="row">
-            <!-- Sản phẩm sẽ được thêm vào đây -->
-        </div>
-        <div id="pagination" class="pagination"></div>
-    </div>
     <script>
         (async () => {
-            const params = new URLSearchParams(window.location.search);
-            const page = parseInt(new URLSearchParams(window.location.search).get('page')) || 1; 
-            const manufacturerIds = params.getAll('manufacturerId');
-    
-            let requestUrl = `/san-pham?page=${page}`;
-            if (manufacturerIds.length) {
-                manufacturerIds.forEach(id => {
-                    requestUrl += `&manufacturerId=${id}`;
-                });
-            }
-    
-            const res = await fetch(requestUrl);
-            const data = await res.json();
-            const listproduct = document.querySelector('#listproduct');
+            const urlParams = new URLSearchParams(window.location.search);
+            const productList = document.querySelector('#product-list');
+            const pagination = document.querySelector('#pagination');
+            const filterBox = document.querySelector('#manufacturer-filters');
 
-            if (data && data.products.length) {
-                data.products.forEach((product) => {
-                    listproduct.innerHTML += `
-                        <div class="col-md-3 col-sm-3 col-xs-6">
-                            <div class="p-i">
-                                <a class="p-img" href="/san-pham/${product.slug}" >
-                                    <img src="/${product.images[0]}" alt='${product.name}'>
-                                </a>
-                                <h3><a href="/san-pham/${product.slug}">${product.name}</a></h3>
-                                <p class="price-box">
-                                    <span class="price-news">Giá: Liên hệ</span>
-                                </p>
-                            </div>
+            // 1. Load Manufacturers
+            const resM = await fetch('/hang-san-xuat/');
+            const manufacturers = await resM.json();
+            const activeManufacturers = urlParams.get('manufacturers')?.split(',') || [];
+
+            if (manufacturers && filterBox) {
+                filterBox.innerHTML = '';
+                manufacturers.forEach(m => {
+                    const checked = activeManufacturers.includes(m._id) ? 'checked' : '';
+                    filterBox.innerHTML += `
+                        <div class="filter-item">
+                            <label>
+                                <input type="checkbox" value="${m._id}" ${checked} class="m-filter-checkbox">
+                                ${m.name}
+                            </label>
                         </div>
                     `;
                 });
-    
-                // Phân trang
-                const pagination = document.querySelector('#pagination');
-                pagination.innerHTML = ''; // Xóa các nút hiện có trước khi thêm nút mới
-    
-                if (data.totalPages > 1) {
-                    if (page > 1) {
-                        const first = createPageItem(1, '<<');
-                        pagination.appendChild(first);
+
+                // Attach filter events
+                document.querySelectorAll('.m-filter-checkbox').forEach(cb => {
+                    cb.addEventListener('change', () => {
+                        const selected = Array.from(document.querySelectorAll('.m-filter-checkbox:checked')).map(i => i.value);
+                        if (selected.length > 0) {
+                            urlParams.set('manufacturers', selected.join(','));
+                        } else {
+                            urlParams.delete('manufacturers');
+                        }
+                        urlParams.set('page', '1');
+                        window.location.search = urlParams.toString();
+                    });
+                });
+            }
+
+            // 2. Load Products
+            const page = urlParams.get('page') || 1;
+            const manId = urlParams.get('manufacturers') || '';
+            const fetchUrl = `/san-pham/?page=${page}&limit=36${manId ? `&manufacturerId=${manId}` : ''}`;
+            
+            try {
+                const resP = await fetch(fetchUrl);
+                const data = await resP.json();
+
+                if (data && data.products && data.products.length > 0) {
+                    productList.innerHTML = '';
+                    data.products.forEach(product => {
+                        productList.innerHTML += `
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                                <div class="p-i">
+                                    <a class="p-img" href="/san-pham/${product.slug}">
+                                        <img src="${product.images[0]}" alt="${product.name}" />
+                                    </a>
+                                    <h3><a href="/san-pham/${product.slug}">${product.name}</a></h3>
+                                    <p class="price-box"><span class="price-news">Giá: Liên hệ</span></p>
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    // Pagination
+                    pagination.innerHTML = '';
+                    const totalPages = data.totalPages;
+                    for (let i = 1; i <= totalPages; i++) {
+                        const active = i == page ? 'active' : '';
+                        const pLinkParams = new URLSearchParams(urlParams.toString());
+                        pLinkParams.set('page', i);
+                        pagination.innerHTML += `<li class="${active}"><a href="?${pLinkParams.toString()}">${i}</a></li>`;
                     }
-    
-                    const startPage = Math.max(1, page - 2);
-                    const endPage = Math.min(data.totalPages, page + 2);
-                    for (let i = startPage; i <= endPage; i++) {
-                        const pageLink = createPageItem(i, i);
-                        pagination.appendChild(pageLink);
-                    }
-    
-                    if (page < data.totalPages) {
-                        const last = createPageItem(data.totalPages, '>>');
-                        pagination.appendChild(last);
-                    }
+                } else {
+                    productList.innerHTML = '<div class="col-xs-12">Không tìm thấy sản phẩm nào.</div>';
+                    pagination.innerHTML = '';
                 }
-            } 
-    
-            function createPageItem(pageNum, text) {
-                const pageLink = document.createElement('a');
-                pageLink.href = `?page=${pageNum}`;
-                pageLink.innerText = text;
-                pageLink.className = 'page-item';
-                if (pageNum === page) {
-                    pageLink.classList.add('active');
-                }
-                return pageLink;
+            } catch (err) {
+                console.error('Error fetching products:', err);
+                productList.innerHTML = '<div class="col-xs-12">Lỗi khi tải danh sách sản phẩm.</div>';
             }
         })();
     </script>
-    
 </body>
 </html>
