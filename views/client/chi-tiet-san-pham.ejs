@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-5 col-sm-6 col-xs-12">
                 <div class="p-img-detail">
-                    <img src="<%= product.images[0] %>" alt="<%= product.name %>" width="100%">
+                    <img src="<%= BASE_URL %><%= product.images[0] %>" alt="<%= product.name %>" width="100%">
                 </div>
             </div>
             <div class="col-md-7 col-sm-6 col-xs-12">
@@ -52,6 +52,7 @@
     <%- include('partials/scripts') %>
 
     <script>
+        const BASE_URL = '<%= BASE_URL %>';
         (async () => {
             const relatedP = document.querySelector('#related-p');
             const res = await fetch(`/san-pham/related/<%= product._id %>`);
@@ -62,7 +63,7 @@
                         <div class="item">
                             <div class="p-i">
                                 <a class="p-img" href="/san-pham/${value.slug}">
-                                    <img src="${value.images[0]}" alt="${value.name}" />
+                                    <img src="${BASE_URL}${value.images[0]}" alt="${value.name}" />
                                 </a>
                                 <h3><a href="/san-pham/${value.slug}">${value.name}</a></h3>
                                 <p class="price-box"><span class="price-news">Giá: Liên hệ</span></p>
